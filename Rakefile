@@ -4,6 +4,7 @@
 require 'rake/clean'
 
 CLEAN.include('**/*.{aux,log,out}')
+CLEAN.include('tmp/**/*')
 CLOBBER.include('**/*.pdf')
 CLOBBER.include('content/**/*.tex')
 
@@ -38,8 +39,13 @@ task :compile do
 
         # write 
         # create tex associated to md
-        include_list <<= file.sub(/.md$/,'')
-        fic = File.new(file.sub(/.md$/,'.tex'),"w")
+        ficname="tmp/"+file.sub(/.md$/,'.tex')
+        include_list <<= ficname.sub(/.tex$/,'')
+        if not FileTest::directory?("tmp")
+            Dir.mkdir("tmp")
+        end
+        Dir.mkdir(File.dirname(ficname))if not FileTest::directory?(File.dirname(ficname))
+        fic = File.new(ficname,"w")
         fic.write( tmp )
         fic.close
     end
