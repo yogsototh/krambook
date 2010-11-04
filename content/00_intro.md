@@ -1,15 +1,15 @@
 # Introduction
 %%% latex %%% \LaTeX %%%
-%%% tex %%% \TeX %%%
-%%% tlal %%% {\em Trop long à lire\;: } %%%
+%%% tldr %%% {\em Too long don't read\;: } %%%
 
-%tlal Ceci est l'introduction de ce "long" livre en %latex &nbsp; et avec du %tex &nbsp; aussi.
+%tldr A simple demonstration of how macros are working.
 
-Avec plusieurs points importants.
+The output should be in %latex &nbsp; and 
+was compile from markdown-like format.
 
-- Le premier ;
-- le second ;
-- et le dernier.
+- Simple list ;
+- Example ;
+- Another one item.
 
 ~~~~~
 Hello there
@@ -18,8 +18,9 @@ this is some code block
 ~~~~~
 
 %latex
-: Une definition de %latex
+: Some %latex definition
 
-A simple $$x_i$$ and protected one \$$x_i\$$ definition and a long formula:
+A simple math mode $$x_i$$ and a protected one \$$x_i\$$.
+A long formula now:
 
 $$ \sum_{i=0}^n\sqrt{x_i + y_i} $$
