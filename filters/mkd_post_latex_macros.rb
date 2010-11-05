@@ -13,7 +13,7 @@
 # %%% macro_name %%% macro_value %%%
 #
 
-class MarkdownMacros
+class MarkdownPostLatexMacros
     attr_accessor :macro
     def initialize()
         super
@@ -33,17 +33,24 @@ class MarkdownMacros
     end
 
     def run (content)
-        content.gsub(/%%% (\w*) %%% ((.|\n)*?) %%%/m) do |m| 
-            puts %{  mkd macro %#{$1}\t=> #{$2}}
-            @macro[$1.intern]=$2
+        content.gsub(/LLL (\w*) LLL ((.|\n)*?) LLL/m) do |m| 
+            name=$1
+            value=$2
+            puts %{  ltx macro %#{name}\t=> #{value}}
+            value=value.gsub(/\\textbackslash\{\}/,'\\').
+                gsub(/\\%/,'%').
+                gsub(/\\\{/,'{').
+                gsub(/\\\}/,'}')
+            puts %{  ltx macro %#{name}\t=> #{value}}
+            @macro[name.intern]=value
             ""
-        end.gsub(/((\\)?)%(\w*)/) do |m| 
-            puts " mkd macro MATCH: 1. #{$1} 2. #{$2} 3. #{$3}"
+        end.gsub(/((\\textbackslash\{\})?)\\%(\w*)/) do |m| 
+            puts "  ltx macro MATCH: 1. #{$1} 2. #{$2} 3. #{$3}"
             if $3 != "" 
                 if $1 == ""
                     macro_value_for($3)
                 else
-                    '`%'+$3+'`'
+                    %{\texttt{%#{$3}}}
                 end
             else
                 m

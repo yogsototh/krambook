@@ -14,20 +14,24 @@ task :compile do
     require 'rubygems'
     require 'kramdown'
     require 'filters/markdown_macros'
+    require 'filters/mkd_post_latex_macros'
 
     pdfname="my_book"
     
-    filters=[]
-    filters<<=MarkdownMacros.new
+    prefilters=[]
+    prefilters<<=MarkdownMacros.new
     
+    postfilters=[]
+    postfilters<<=MarkdownPostLatexMacros.new
+
     include_list=[]
     Dir.glob("content/**/*.md").each do |file|
         text=""
         puts file
         tmp=File.new(file,"r").read
         # pre filters
-        filters.each do |f| 
-            tmp=f.prefilter( tmp )
+        prefilters.each do |f| 
+            tmp=f.run( tmp )
         end
         text <<= tmp
 
@@ -35,7 +39,7 @@ task :compile do
         tmp=Kramdown::Document.new(text).to_latex
 
         # post filters
-        filters.each{ |f| tmp=f.postfilter(tmp) }
+        postfilters.each{ |f| tmp=f.run(tmp) }
 
         # write 
         # create tex associated to md
