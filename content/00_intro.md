@@ -32,10 +32,12 @@ It renders as:
 
 > %tldr A simple demonstration of how macros are working.
 
-With %multiline
+The \%multine macro render as:
+
+> %multiline
 
 The output should be in %latex &nbsp; and 
-was compile from markdown-like format.
+was compiled from a markdown-like format.
 
 - Simple list ;
 - Example ;
@@ -48,7 +50,7 @@ this is some code block
 ~~~~~
 
 %latex
-: Some %latex definition
+: Some %latex &nbsp; definition
 
 A simple math mode $$x_i$$ and a protected one \$$x_i\$$.
 A long formula now:
