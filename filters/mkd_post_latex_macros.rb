@@ -33,7 +33,7 @@ class MarkdownPostLatexMacros
     end
 
     def run (content)
-        content.gsub(/^LLL (\w*) LLL ((.|\n)*?) LLL/m) do |m| 
+        content.gsub(/^LLL (\w[a-zA-Z0-9_]*) LLL ((.|\n)*?) LLL/m) do |m| 
             name=$1
             value=$2
             puts %{  ltx macro %#{name}\t=> #{value}}
@@ -44,7 +44,7 @@ class MarkdownPostLatexMacros
             puts %{  ltx macro %#{name}\t=> #{value}}
             @macro[name.intern]=value
             ""
-        end.gsub(/((\\textbackslash\{\})?)\\%(\w*)/) do |m| 
+        end.gsub(/((\\textbackslash\{\})?)\\%(\w[a-zA-Z0-9_]*)/) do |m| 
             puts "  ltx macro MATCH: 1. #{$1} 2. #{$2} 3. #{$3}"
             if $3 != "" 
                 if $1 == ""
