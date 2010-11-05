@@ -33,7 +33,7 @@ class MarkdownPostLatexMacros
     end
 
     def run (content)
-        content.gsub(/LLL (\w*) LLL ((.|\n)*?) LLL/m) do |m| 
+        content.gsub(/^LLL (\w*) LLL ((.|\n)*?) LLL/m) do |m| 
             name=$1
             value=$2
             puts %{  ltx macro %#{name}\t=> #{value}}
@@ -50,7 +50,7 @@ class MarkdownPostLatexMacros
                 if $1 == ""
                     macro_value_for($3)
                 else
-                    %{\texttt{%#{$3}}}
+                    %{\\texttt{\\%#{$3}}}
                 end
             else
                 m

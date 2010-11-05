@@ -33,7 +33,7 @@ class MarkdownMacros
     end
 
     def run (content)
-        content.gsub(/%%% (\w*) %%% ((.|\n)*?) %%%/m) do |m| 
+        content.gsub(/^%%% (\w*) %%% ((.|\n)*?) %%%/m) do |m| 
             puts %{  mkd macro %#{$1}\t=> #{$2}}
             @macro[$1.intern]=$2
             ""
@@ -43,7 +43,8 @@ class MarkdownMacros
                 if $1 == ""
                     macro_value_for($3)
                 else
-                    '`%'+$3+'`'
+                    # '`%'+$3+'`'
+                    m
                 end
             else
                 m

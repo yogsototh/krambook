@@ -1,6 +1,5 @@
 # Introduction
-LLL latex LLL \LaTeX LLL
-LLL tldr LLL {\em Too long don't read\;: } LLL
+
 %%% multiline %%% a  
 multiline  
 macro %%%
@@ -8,8 +7,30 @@ macro %%%
 %%% complex %%% ruby: (1..5).map do |x| 
 x*x 
 end.join(" : ") %%%
+LLL latex LLL \LaTeX LLL
+LLL tldr LLL {\em Too long don't read: } LLL
 
-%tldr A simple demonstration of how macros are working.
+It is a simple demonstration of how macros are working.
+They were declared inside the markdown like this:
+
+     %%% multiline %%% a  
+     multiline  
+     macro %%%
+     %%% ruby %%% ruby: "a"*3 %%%
+     %%% complex %%% ruby: (1..5).map do |x| 
+     x*x 
+     end.join(" : ") %%%
+     LLL latex LLL \LaTeX LLL
+     LLL tldr LLL {\em Too long don't read: } LLL
+
+
+Now if I write:
+
+> \%tldr A simple demonstration of how macros are working.
+
+It renders as:
+
+> %tldr A simple demonstration of how macros are working.
 
 With %multiline
 
