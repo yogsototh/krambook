@@ -5,10 +5,8 @@ Imagine Markdown with the power and quality of LaTeX.
 This is what this simple project try to achieve.
 You can declare macros directly in markdown:
 
-    %%% macroname %%% a \LaTeX macro value %%%
-    
-    %%% anotherone %%% a \linebreak
-                        macro \linebreak
+    %%% anotherone %%% a  
+                        macro  
                         on many lines %%%
     
     %%% code %%% ruby: "a"*3 %%%
@@ -17,7 +15,13 @@ You can declare macros directly in markdown:
     x*x
     end.join(" : ") %%%
 
-In markdown, you simply write %macroname,
+These transformations will occur on the markdown file before it is transformed in LaTeX.
+
+You can also declare macro that will be processed after the file was transformed in LaTeX.
+
+    LLL macroname LLL a \LaTeX macro value LLL
+
+In markdown, you simply write %macroname or %code
 and it will be transformed correctly in your pdf.
 
 # Install
