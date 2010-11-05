@@ -35,16 +35,16 @@ task :compile do
         end
         text <<= tmp
 
-        puts '==== BEGIN BEFORE LATEX ===='
-        puts text
-        puts '==== END BEFORE LATEX ===='
+        # puts '==== BEGIN BEFORE LATEX ===='
+        # puts text
+        # puts '==== END BEFORE LATEX ===='
 
         # compile to latex
         tmp=Kramdown::Document.new(text).to_latex
 
-        puts '==== BEGIN AFTER LATEX ===='
-        puts tmp
-        puts '==== END AFTER LATEX ===='
+        # puts '==== BEGIN AFTER LATEX ===='
+        # puts tmp
+        # puts '==== END AFTER LATEX ===='
 
         # post filters
         postfilters.each{ |f| tmp=f.run(tmp) }
