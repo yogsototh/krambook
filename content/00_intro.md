@@ -1,8 +1,8 @@
 # Introduction
-%%% latex %%% \LaTeX %%%
-%%% tldr %%% {\em Too long don't read\;: } %%%
-%%% multiline %%% a \linebreak
-multiline \linebreak
+LLL latex LLL \LaTeX LLL
+LLL tldr LLL {\em Too long don't read\;: } LLL
+%%% multiline %%% a  
+multiline  
 macro %%%
 %%% ruby %%% ruby: "a"*3 %%%
 %%% complex %%% ruby: (1..5).map do |x| 
