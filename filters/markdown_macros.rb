@@ -20,11 +20,16 @@ class MarkdownMacros
         @macro={}
     end
 
-    def macro_value_for(macro_name)
-        if macro_name.nil? or macro_name=="" or @macro[macro_name.intern].nil?
-            return %{%#{macro_name}} 
+    def macro_value_for(ident)
+        return '%' if ident.nil? or ident==""
+        ident=ident.intern
+        return %{%#{ident}} if @macro[ident].nil?
+
+        if @macro[ident] =~ /ruby: ((.|n)*)/m
+            return eval $1
+        else
+            return @macro[ident]
         end
-        return @macro[macro_name.intern]
     end
 
     def prefilter( content )
@@ -36,9 +41,14 @@ class MarkdownMacros
     end
 
     def postfilter(content)
-        content.gsub(/\\%(\w*)/) do |m| 
-            if m != "\\%"
-                macro_value_for($1)
+        content.gsub(/((\\textbackslash\{\})?)\\%(\w*)/) do |m| 
+            puts "MATCH: 1. #{$1} 2. #{$2} 3. #{$3}"
+            if $3 != "" 
+                if $1 == ""
+                    macro_value_for($3)
+                else
+                    "\\texttt{\\%#{$3}}"
+                end
             else
                 m
             end
