@@ -1,4 +1,4 @@
-{:comment}
+{::comment}
 LLL latex LLL \LaTeX LLL
 LLL latex_ LLL \LaTeX{} LLL
 LLL tex LLL \TeX LLL
@@ -28,35 +28,40 @@ Then why simply don't use %latex?
 Simply because %latex is verbose and full of backslashes. 
 Just make a comparison between %latex and markdown
 
-    %--- LaTeX source file ----
-    \documenttype{article}
-    \usepackage[utf-8]{inputenc}
-    \usepackage{fontenc}
-    \usepackage{amsmath}
-    ... % This is the ritual header
-    \begin{document}
-    This is a test file.
-    I begin by making a list of bullet:
-    \begin{itemize}
-    \item the first point is 
-        \LaTeX is a bit verbose
-    \item the second point is 
-        \Latex has \textem{more} \textbackslash{} than Markdown
-    \item I believe you understood now.
-    \end{itemize}
-    \end{document}
-    %--- LaTeX source file ----
+~~~
 
-    
-    {:comment}
-    --- Kramdown source file ----
-    {/:comment}
-    This is a test file
-    I begin by making a list of bullet:
+%--- LaTeX source file ----
+\documenttype{article}
+\usepackage[utf-8]{inputenc}
+\usepackage{fontenc}
+\usepackage{amsmath}
+... % This is the ritual header
+\begin{document}
+This is a test file.
+I begin by making a list of bullet:
+\begin{itemize}
+\item the first point is 
+    \LaTeX is a bit verbose
+\item the second point is 
+    \Latex has \textem{more} \textbackslash{} than Markdown
+\item I believe you understood now.
+\end{itemize}
+\end{document}
+~~~
+{:lang="TeX"}
 
-    - the first point is LaTeX is a bit verbose
-    - the second point is LaTeX has _more_ \ than Markdown
-    - I believe you understood now
+~~~
+{::comment}
+--- Kramdown source file ----
+{/:comment}
+This is a test file
+I begin by making a list of bullet:
+
+- the first point is LaTeX is a bit verbose
+- the second point is LaTeX has _more_ \ than Markdown
+- I believe you understood now
+~~~
+{:lang="HTML"}
 
 The result will be similar:
 
@@ -72,17 +77,17 @@ How to have the clarity of Markdown without losing all advantages of %latex?
 Here is my proposition:
 
 First, install %latex, ruby and the `kramdown`[^1] gem. 
+
 [^1]: `kramdown` is an amelioration of the origin markdown format.
 
 - Download this source.
 - Change the title of your document and the author name in the `template.tex` file.
-- Create and write in kramdown format
+- Create and write in `kramdown` format
 - run `rake` (or `rake compile`) to create and show a `.pdf` file.
 
 This proposition is already really good. You can version your book and separate each part of the book in different files organized in folders[^2].
 
-[^2]: As the sort of file is done via the `Dir[content/**/*.md]` I suggest you to name your files and folder with prefixes for their position, like `00_intro
-`, `01_section/01_subsection.md`, etc...
+[^2]: As the sort of file is done via the `Dir[content/**/*.md]`, I suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc...
 
 The inclusion is done _automagically_ using file name (you can change this make a bit of ruby inside the `Rakefile`).
 But to have a really scalable solution, you need to have the ability to make macros in `kramdown`.

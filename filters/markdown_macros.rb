@@ -34,11 +34,11 @@ class MarkdownMacros
 
     def run (content)
         content.gsub(/^%%% (\w[a-zA-Z0-9_]*) %%% ((.|\n)*?) %%%/m) do |m| 
-            puts %{  mkd macro %#{$1}\t=> #{$2}}
+            # puts %{  mkd macro %#{$1}\t=> #{$2}}
             @macro[$1.intern]=$2
             ""
         end.gsub(/((\\)?)%(\w[a-zA-Z0-9_]*)/) do |m| 
-            puts " mkd macro MATCH: 1. #{$1} 2. #{$2} 3. #{$3}"
+            # puts " mkd macro MATCH: 1. #{$1} 2. #{$2} 3. #{$3}"
             if $3 != "" 
                 if $1 == ""
                     macro_value_for($3)

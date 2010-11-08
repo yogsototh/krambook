@@ -43,11 +43,11 @@ class MarkdownPostLatexMacros
                 gsub(/\\_/,'_').
                 gsub(/\\\{/,'{').
                 gsub(/\\\}/,'}')
-            puts %{  ltx macro %#{name}\t=> #{value}}
+            # puts %{  ltx macro %#{name}\t=> #{value}}
             @macro[name.intern]=value
             ""
         end.gsub(/((\\textbackslash\{\})?)\\%(\w(\w|\d|\\_)*)/) do |m| 
-            puts "  ltx macro MATCH: #{$3}"
+            # puts "  ltx macro MATCH: #{$3}"
             if $3 != "" 
                 if $1 == ""
                     macro_value_for($3.gsub(/\\_/,'_'))

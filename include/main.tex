@@ -1,12 +1,17 @@
 % Author Yann Esposito©2010
-\documentclass{book}
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[10pt]{book}
+% -- XeLaTeX --
 \XeTeXdefaultencoding utf-8
-% \defaultfontfeatures{Mapping=tex-text}
-% \setmainfont[Ligatures={Common}]{Hoefler Text}
+\usepackage{xltxtra,fontspec,xunicode}
 % \setmainfont{Hoefler Text}
-\usepackage{listing}
+\setmainfont{Georgia}
+
+% -- Kramdown necessary includes --
+\usepackage{listings}
 \usepackage{hyperref}
-\usepackage{amssymb}
+% \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts}
@@ -14,3 +19,10 @@
 \usepackage{eurosym}
 \usepackage{fancyvrb}
 \usepackage{fontspec}
+
+% -- Personal style --
+\usepackage{color}
+\definecolor{italiccolor}{rgb}{0.4,0.4,0.4}
+\renewcommand{\textit}[1]{\textcolor{italiccolor}{\it #1}}
+\renewcommand{\emph}[1]{\textcolor{italiccolor}{\em #1}}
+

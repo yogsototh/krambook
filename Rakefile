@@ -35,28 +35,19 @@ task :compile do
         end
         text <<= tmp
 
-        # puts '==== BEGIN BEFORE LATEX ===='
-        # puts text
-        # puts '==== END BEFORE LATEX ===='
-
         # compile to latex
         tmp=Kramdown::Document.new(text,:latex_headers => %w(chapter section subsection paragraph subparagraph subsubparagraph)).to_latex
-
-        # puts '==== BEGIN AFTER LATEX ===='
-        # puts tmp
-        # puts '==== END AFTER LATEX ===='
 
         # post filters
         postfilters.each{ |f| tmp=f.run(tmp) }
 
         # write 
         # create tex associated to md
-        ficname="tmp/"+file.sub(/.md$/,'.tex')
+        ficname="tmp/"+file.sub(/.md$/,'.tex').sub(%r{^content/},'')
         include_list <<= ficname.sub(/.tex$/,'')
-        if not FileTest::directory?("tmp")
-            Dir.mkdir("tmp")
-        end
-        Dir.mkdir(File.dirname(ficname))if not FileTest::directory?(File.dirname(ficname))
+        Dir.mkdir("tmp") if not FileTest::directory?("tmp")
+        tmpficdir=File.dirname(ficname)
+        FileUtils.mkdir_p(tmpficdir) if not FileTest::directory?(tmpficdir)
         fic = File.new(ficname,"w")
         fic.write( tmp )
         fic.close
@@ -67,7 +58,7 @@ task :compile do
     template.close
 
     txt.sub!( /%# COMPILED CONTENT #%/ ) do
-        include_list.map { |f| "\\include{#{f}}\n" }.join("\n")
+        include_list.sort.map { |f| "\\include{#{f}}\n" }.join("\n")
     end
     fic=File.new("#{pdfname}.tex","w")
     fic.write(txt)
