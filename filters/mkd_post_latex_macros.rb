@@ -39,6 +39,7 @@ class MarkdownPostLatexMacros
             # puts %{  ltx macro %#{name}\t=> #{value}}
             name.gsub!(/\\_/,'_')
             value=value.gsub(/\\textbackslash\{\}/,'\\').
+                gsub(/\\textbar\{\}/,'|').
                 gsub(/\\%/,'%').
                 gsub(/\\_/,'_').
                 gsub(/\\\{/,'{').
