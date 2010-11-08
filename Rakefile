@@ -40,7 +40,7 @@ task :compile do
         # puts '==== END BEFORE LATEX ===='
 
         # compile to latex
-        tmp=Kramdown::Document.new(text).to_latex
+        tmp=Kramdown::Document.new(text,:latex_headers => %w(chapter section subsection paragraph subparagraph subsubparagraph)).to_latex
 
         # puts '==== BEGIN AFTER LATEX ===='
         # puts tmp
