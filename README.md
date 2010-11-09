@@ -97,7 +97,7 @@ First, install %latex, ruby and the `kramdown`[^1] gem.
 
 This proposition is already really good. You can version your book and separate each part of the book in different files organized in folders[^2].
 
-[^2]: For now, files are ordered from their name. I then suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc... Of course it is easy to ameliorate this make a bit of `ruby` (search `sort` in the `Rakefile` file).
+[^2]: For now, files are ordered from their name. I then suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc... You can make a bit of `ruby` (search `@filelist` in the `Rakefile` file) to change this behaviour.
 
 The inclusion is done _automagically_ using file name (you can change this make a bit of ruby inside the `Rakefile`).
 But to have a really scalable solution, you need to have the ability to make macros in `kramdown`.
