@@ -37,7 +37,7 @@ task :compile do
         end
 
         def process_template
-            template=File.new(@templateFile,"r")
+            template=File.new(@template_file,"r")
             txt=template.read
             template.close
 
@@ -47,7 +47,8 @@ task :compile do
                     end.join("\n")
                 end.
                 sub!(%{\\author\{\}},'\author{'+@author+'}').
-                sub!(%{\\title\{\}},'\title{'+@title+'}')
+                sub!(%{\\title\{\}},'\title{'+@title+'}').
+                sub!( /%%# LATEX HEADER FROM config\.rb #%%/,@latex_headers) 
             fic=File.new("tmp/#{@pdfname}.tex","w")
             fic.write(txt)
             fic.close
@@ -94,6 +95,7 @@ task :compile do
 
             # launch the xelatex process
             system("cp -rf include tmp/")
+
             system("cd tmp; xelatex #{@pdfname}; cd ..")
             # on Ubuntu replace by
             # system("gnome-open #{@pdfname}.pdf")

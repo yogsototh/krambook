@@ -28,7 +28,7 @@ To prove my point, simply compare a %latex_ and a %markdown file.
 
 \begin{document}
 This is a test file.
-I begin by making a list of bullet:
+I begin by making a list of bullet points:
 \begin{itemize}
 \item the first point is 
     \LaTeX is a bit verbose
@@ -42,7 +42,7 @@ I begin by making a list of bullet:
 
 ~~~
 This is a test file
-I begin by making a list of bullet:
+I begin by making a list of bullet points:
 
 - the first point is LaTeX is a bit verbose
 - the second point is LaTeX has _more_ \ than Markdown
@@ -58,7 +58,7 @@ LLL endbox LLL \hrule\end{minipage}\medskip LLL
 %beginbox
 
 This is a test file
-I begin by making a list of bullet:
+I begin by making a list of bullet points:
 
 - the first point is %latex_ is a bit verbose
 - the second point is %latex_ has _more_ \ than Markdown
@@ -91,7 +91,7 @@ First, install %latex, ruby and the `kramdown`[^1] gem.
 [^1]: `kramdown` is an amelioration of the original markdown format.
 
 - Download this source.
-- Change the title of your document and the author name in the `template.tex` file.
+- Edit the `config.rb` file (set title, author name and pdf filename)
 - Create and write in `kramdown` format
 - run `rake` (or `rake compile`) to create and show a `.pdf` file.
 
@@ -108,9 +108,7 @@ This is not a problem, I've done this. Here is how you can declare macros inside
     %%% amacro %%% a  
                         macro  
                         on many lines %%%
-    
     %%% code %%% ruby: "a"*3 %%%
-    
     %%% complex %%% ruby: (1..5).map do |x|
     x*x
     end.join(" : ") %%%
@@ -156,4 +154,3 @@ and
 
     rake clobber
 
-The inclusion of files is done naturally by `Dir[content/**/*.md]` . If you want a more versatile way of doing it, simply look at the Rakefile and do a bit of ruby to sort file as you wish.
