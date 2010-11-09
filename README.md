@@ -82,7 +82,7 @@ What makes %latex_ so excellent?
   - you use a text format that can be easily handled by most versionning system,
   - easy to work on the same document with many different people.
 
-And many other reasons I can't write them all here.  Yes, %latex_ _rocks_.
+And many others.  Yes, %latex_ _rocks_.
 
 # Installation
 
