@@ -3,6 +3,23 @@
 % -- Personal style --
 %%# LATEX HEADER FROM config.rb #%%
 
+
+\makechapterstyle{combined}{
+    \setlength{\midchapskip}{-60pt}
+    \setlength{\afterchapskip}{2.5cm}
+    \renewcommand*{\printchaptername}{}
+    \renewcommand*{\chapnumfont}{\normalfont\sffamily\bfseries\fontsize{20}{0}\selectfont}
+    \renewcommand*{\printchapternum}{\flushright\chapnumfont{\thechapter}}
+    \renewcommand*{\chaptitlefont}{\normalfont\sffamily\bfseries}
+    \renewcommand*{\printchaptertitle}[1]{%
+        \hrule\vspace{.2ex}\hrule\vspace{2ex}%
+        \chaptitlefont\parbox[t]{\textwidth-3cm}{\raggedright##1}
+        \vspace{2ex}\hrule\vspace{.2ex}\hrule}
+}
+
+\chapterstyle{combined}
+
+
 \author{}
 
 \title{}
