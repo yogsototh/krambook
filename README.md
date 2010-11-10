@@ -1,11 +1,12 @@
 # Write Books like a Hacker
 
 Quality and scalability of XeLaTeX _&amp;_ readable as Markdown.
+You can look at the `krambook.pdf` to see what you can achieve.
 
 __Idea__: provide macros for Markdown then transform the text in Latex and generate a `pdf` file.
 
 __Why not using LaTeX directly?__
-Simply because %latex_ is verbose and full of backslashes. 
+Simply because LaTeX is verbose and full of backslashes. 
 To prove my point, simply compare a LaTeX and a Markdown file.
 
 LaTeX:
@@ -41,26 +42,26 @@ Both file will be generated as:
 
 > I begin by making a list of bullet points:
 > 
-> - the first point is %latex_ is a bit verbose
-> - the second point is %latex_ has _more_ \ than Markdown
+> - the first point is LaTeX is a bit verbose
+> - the second point is LaTeX has _more_ \ than Markdown
 > - I believe you understood now
 
 __Why macros are so necessary for long documents?__
-Because without them, %markdown simply does not scale. For example imagine you can't declare `\su` to be generated as $$\sum_{n=0}^{\infty} u_n$$ in a thesis where this expression is repeated 1000 times.
+Because without them, Markdown simply does not scale. For example imagine you can't declare `\su` to be generated as $$\sum_{n=0}^{\infty} u_n$$ in a thesis where this expression is repeated 1000 times.
 
 # Install
 
 If you are reading these lines, chances are great that your system contains all necessary packages.
 But to resume you have to install:
 
-- %latex (more precisely %xelatex), 
+- LaTeX (more precisely XeLaTeX), 
 - ruby,
 - rake and
 - %kramdown[^1]. 
 
 [^1]: %kramdown is an amelioration of the original markdown format.
 
-To install %xelatex, I suggest you to use [TexLive](http://www.tug.org/texlive/) full install? 
+To install XeLaTeX, I suggest you to use [TexLive](http://www.tug.org/texlive/) full install? 
 But of course you are free to use any other distribution.
 
 You'll need to install ruby and rake. 
@@ -78,7 +79,7 @@ Finally Download this source code and your installation should be over.
 # How do I write a book using it?
 
 - Edit the `config.rb` file (set title, author name and pdf filename)
-- Create and write files in the `content` folder.  You should write them using the [kramdown](http://kramdown.rubyforge.org/) format. Very close to the %mardown format.
+- Create and write files in the `content` folder.  You should write them using the [kramdown](http://kramdown.rubyforge.org/) format. Very close to the Mardown format.
 - run `rake` (or `rake compile`) to create and show a `.pdf` file.
 
 Remark: 
