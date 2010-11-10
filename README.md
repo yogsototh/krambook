@@ -21,36 +21,36 @@ To prove my point, simply compare a %latex_ and a %markdown file.
 %latex:
 
 ~~~
-
-\documenttype{article}
-\usepackage[utf-8]{inputenc}
-\usepackage{fontenc}
-\usepackage{amsmath}
-
-... % This is the ritual header
-
-\begin{document} % ---- end of the preamble
-I begin by making a list of bullet points:
-\begin{itemize}
-\item the first point is 
-    \LaTeX is a bit verbose
-\item the second point is 
-    \Latex has \textem{more} \textbackslash{} than Markdown
-\item I believe you understood now.
-\end{itemize}
-\end{document}
+    
+    \documenttype{article}
+    \usepackage[utf-8]{inputenc}
+    \usepackage{fontenc}
+    \usepackage{amsmath}
+    
+    ... % This is the ritual header
+    
+    \begin{document} % ---- end of the preamble
+    I begin by making a list of bullet points:
+    \begin{itemize}
+    \item the first point is 
+        \LaTeX is a bit verbose
+    \item the second point is 
+        \Latex has \textem{more} \textbackslash{} than Markdown
+    \item I believe you understood now.
+    \end{itemize}
+    \end{document}
 ~~~
 {:lang="TeX"}
 
 %markdown:
 
 ~~~
-This is a test file
-I begin by making a list of bullet points:
-
-- the first point is LaTeX is a bit verbose
-- the second point is LaTeX has _more_ \ than Markdown
-- I believe you understood now
+    This is a test file
+    I begin by making a list of bullet points:
+    
+    - the first point is LaTeX is a bit verbose
+    - the second point is LaTeX has _more_ \ than Markdown
+    - I believe you understood now
 ~~~
 {:lang="HTML"}
 
