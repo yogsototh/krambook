@@ -3,19 +3,27 @@
 % -- Personal style --
 %%# LATEX HEADER FROM config.rb #%%
 
-
+% -- Redefinition of memoir chapters --
+%
+% standard is:
+% \chapterheadstart
+% \printchaptername \chapternamenum \printchapternum
+% \afterchapternum
+% \printchaptertitle{Title goes here}
+% \afterchaptertitle
+\definecolor{hrulecolor}{rgb}{0.8,0.8,0.8}
 \makechapterstyle{combined}{
-    \setlength{\midchapskip}{-60pt}
-    \setlength{\afterchapskip}{2.5cm}
+    \renewcommand*{\chapterheadstart}{%
+        {\normalsize\textcolor{hrulecolor}{\vspace{2ex}\hrule\vspace{.2ex}\hrule}}}
+    \renewcommand*{\afterchaptertitle}{%
+        {\vspace{-2.5ex}\normalsize\textcolor{hrulecolor}{\hrule\vspace{.2ex}\hrule\bigskip}}}
+    \renewcommand*{\afterchapternum}{}
     \renewcommand*{\printchaptername}{}
-    \renewcommand*{\chapnumfont}{\normalfont\sffamily\bfseries\fontsize{20}{0}\selectfont}
-    \renewcommand*{\printchapternum}{\flushright\chapnumfont{\thechapter}}
-    \renewcommand*{\chaptitlefont}{\normalfont\sffamily\bfseries}
-    \renewcommand*{\printchaptertitle}[1]{%
-        \hrule\vspace{.2ex}\hrule\vspace{2ex}%
-        \chaptitlefont\parbox[t]{\textwidth-3cm}{\raggedright##1}
-        \vspace{2ex}\hrule\vspace{.2ex}\hrule}
+    \renewcommand*{\printchapternum}{}
+    \newcommand{\styleprintchapternum}{\textcolor{hrulecolor}{\Huge\thechapter\hspace{.5em}}}
+    \renewcommand*{\printchaptertitle}[1]{\begin{center}\styleprintchapternum \Huge##1\hphantom{\styleprintchapternum}\end{center}}
 }
+% -- 
 
 \chapterstyle{combined}
 

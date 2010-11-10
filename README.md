@@ -1,5 +1,7 @@
 %%% markdown %%% `markdown` %%%
-%%% kramdown %%% `kramdown` %%%
+%%% kramdown %%% [`kramdown`](http://kramdown.rubyforge.org) %%%
+LLL xelatex LLL \XeLaTeX LLL
+LLL xelatex_ LLL \XeLaTeX{} LLL
 LLL latex LLL \LaTeX LLL
 LLL latex_ LLL \LaTeX{} LLL
 LLL tex LLL \TeX LLL
@@ -7,7 +9,7 @@ LLL tex_ LLL \TeX{} LLL
 
 # Write Books like a Hacker
 
-Quality and scalability of %latex_ _&amp;_ readable as %markdown.
+Quality and scalability of %xelatex_ _&amp;_ readable as %markdown.
 
 Idea
 : provide macros for %markdown then transform the text in %latex_ and generate a `pdf` file.
@@ -16,9 +18,10 @@ Why not using %latex_ directly?
 : Simply because %latex_ is verbose and full of backslashes. 
 To prove my point, simply compare a %latex_ and a %markdown file.
 
+%latex:
+
 ~~~
 
-%--- LaTeX source file ----
 \documenttype{article}
 \usepackage[utf-8]{inputenc}
 \usepackage{fontenc}
@@ -26,8 +29,7 @@ To prove my point, simply compare a %latex_ and a %markdown file.
 
 ... % This is the ritual header
 
-\begin{document}
-This is a test file.
+\begin{document} % ---- end of the preamble
 I begin by making a list of bullet points:
 \begin{itemize}
 \item the first point is 
@@ -40,6 +42,8 @@ I begin by making a list of bullet points:
 ~~~
 {:lang="TeX"}
 
+%markdown:
+
 ~~~
 This is a test file
 I begin by making a list of bullet points:
@@ -50,10 +54,10 @@ I begin by making a list of bullet points:
 ~~~
 {:lang="HTML"}
 
-The generated result will be almost the same:
+Both file will be generated as:
 
-LLL beginbox LLL \begin{minipage}{.80\linewidth}\hrule\medskip LLL
-LLL endbox LLL \hrule\end{minipage}\medskip LLL
+LLL beginbox LLL \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% LLL
+LLL endbox LLL \end{minipage}}}\medskip LLL
 
 %beginbox
 
@@ -84,34 +88,68 @@ What makes %latex_ so excellent?
 
 And many others.  Yes, %latex_ _rocks_.
 
-# Installation
+# Install
 
-First, install %latex, ruby and the `kramdown`[^1] gem. 
+If you are reading these lines chances are great that your system contains all necessary packages.
+But to resume you have to install:
 
-[^1]: `kramdown` is an amelioration of the original markdown format.
+- %latex (more precisely Xe%latex), 
+- ruby,
+- rake and
+- %kramdown[^1]. 
 
-- Download this source.
+[^1]: %kramdown is an amelioration of the original markdown format.
+
+To install Xe%latex, I suggest you to use [TexLive](http://www.tug.org/texlive/) full install? 
+But of course you are free to use any other distribution.
+
+You'll need to install ruby and rake. 
+They should be present on your system, but just in case:
+
+    [Ubuntu]> sudo apt-get install ruby rake
+    [Mac OS X]> sudo port install ruby rake
+
+In order to install the %kramdown gem:
+
+    gem install kramdown
+
+Finally Download this source code and your installation should be over.
+
+# How do I write a book using it?
+
 - Edit the `config.rb` file (set title, author name and pdf filename)
-- Create and write in `kramdown` format
+- Create and write files in the `content` folder.  You should write them using the [kramdown](http://kramdown.rubyforge.org/) format. Very close to the %mardown format.
 - run `rake` (or `rake compile`) to create and show a `.pdf` file.
 
-This proposition is already really good. You can version your book and separate each part of the book in different files organized in folders[^2].
+Remark: 
+: by default file are sorted by name.  I suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc...  You can make a bit of `ruby` (search `@filelist` in the `Rakefile` file) to change this behaviour.
 
-[^2]: For now, files are ordered from their name. I then suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc... You can make a bit of `ruby` (search `@filelist` in the `Rakefile` file) to change this behaviour.
+Of course there is also a
 
-The inclusion is done _automagically_ using file name (you can change this make a bit of ruby inside the `Rakefile`).
-But to have a really scalable solution, you need to have the ability to make macros in `kramdown`.
+    rake clean
 
-This is not a problem, I've done this. Here is how you can declare macros inside a `kramdown` file:
+and
 
+    rake clobber
+
+# Macros
+
+Now you can write the content of your book mostly in %kramdown format.
+But with some simple additions: _macros_.
+
+Remark:
+: For now Krambook accept only macros _without_ any parameter. Here are some examples:
+
+~~~
     %%% simple %%% A Simple Macro %%%
     %%% amacro %%% a  
                         macro  
                         on many lines %%%
     %%% code %%% ruby: "a"*3 %%%
     %%% complex %%% ruby: (1..5).map do |x|
-    x*x
-    end.join(" : ") %%%
+                    x*x
+                    end.join(" : ") %%%
+~~~
 
 These transformations will occur on the markdown file before it is transformed in LaTeX.
 
@@ -122,35 +160,4 @@ You can also declare macro that will be processed after the file was transformed
 
 In markdown, you simply write \%macroname or \%code
 and it will be transformed correctly in your pdf.
-
-# Install
-
-You'll need to install ruby, rake (installed by default on most computer).
-
-    [Ubuntu]> sudo apt-get install ruby rake
-
-You'll also need a XeLaTeX installation (may I suggest [TexLive](www.tug.org/texlive/) full install?).
-
-You'll also need the kramdown gem.
-
-    gem install kramdown
-
-And you should be ok to work.
-
-# How do I write a book using it?
-
-Write some file into content. Their format is the 
-[kramdown](http://kramdown.rubyforge.org/) one (very close to Markdown)
-
-Just run
-
-    rake
-
-Of course there is also a
-
-    rake clean
-
-and
-
-    rake clobber
 
