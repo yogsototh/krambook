@@ -16,12 +16,12 @@
     \renewcommand*{\chapterheadstart}{%
         {\normalsize\textcolor{hrulecolor}{\vspace{2ex}\hrule\vspace{.2ex}\hrule}}}
     \renewcommand*{\afterchaptertitle}{%
-        {\vspace{-2.5ex}\normalsize\textcolor{hrulecolor}{\hrule\vspace{.2ex}\hrule\bigskip}}}
+        {\vspace{-2.5ex}\normalsize\textcolor{hrulecolor}{\hrule\vspace{.2ex}\hrule\bigskip\bigskip}}}
     \renewcommand*{\afterchapternum}{}
     \renewcommand*{\printchaptername}{}
     \renewcommand*{\printchapternum}{}
     \newcommand{\styleprintchapternum}{\textcolor{hrulecolor}{\Huge\thechapter\hspace{.5em}}}
-    \renewcommand*{\printchaptertitle}[1]{\begin{center}\styleprintchapternum \Huge##1\hphantom{\styleprintchapternum}\end{center}}
+    \renewcommand*{\printchaptertitle}[1]{\medskip\begin{center}\styleprintchapternum \hfill\begin{minipage}{.9\linewidth}\begin {center}\Huge##1\end{center}\end{minipage}\end{center}\medskip}
 }
 % -- 
 
