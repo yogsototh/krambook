@@ -13,7 +13,7 @@
 # %%% macro_name %%% macro_value %%%
 #
 
-class MarkdownPostLatexMacros
+class MarkdownPostLatexMacrosToHTML
     attr_accessor :macro
     def initialize()
         super
@@ -33,27 +33,21 @@ class MarkdownPostLatexMacros
     end
 
     def run (content)
-        content.gsub(/^LLL (\w(\w|\d|\\_)*) LLL ((.|\n)*?) LLL( (.|\n)*? HTML)?/m) do |m| 
-            name=$1
-            value=$3
-            # puts %{  ADD LATEX MACRO: %#{name}\t=> #{value}}
-            name.gsub!(/\\_/,'_')
-            value=value.gsub(/\\textbackslash\{\}/,'\\').
-                gsub(/\\textbar\{\}/,'|').
-                gsub(/\\%/,'%').
-                gsub(/\\_/,'_').
-                gsub(/\\\{/,'{').
-                gsub(/\\\}/,'}')
-            # puts %{  ltx macro %#{name}\t=> #{value}}
+        content.gsub(/(^<p>\s*)?LLL (\w(\w|\d|\\_)*) LLL ((.|\n)*?) LLL( ((.|\n)*?) HTML)?((\s|\n)*<\/p>)?/m) do |m| 
+            name=$2
+            value=$7
+            puts "SAVE HTML MACRO: #{name} => #{value}"
             @macro[name.intern]=value
             ""
-        end.gsub(/((\\textbackslash\{\})?)\\%(\w(\w|\d|\\_)*)/) do |m| 
+        end.gsub(/(\\?)%(\w[a-zA-Z0-9_]*)/) do |m| 
             # puts "  ltx macro MATCH: #{$3}"
-            if $3 != "" 
-                if $1 == ""
-                    macro_value_for($3.gsub(/\\_/,'_'))
+            protected=$1
+            name=$2
+            if name != "" 
+                if protected == ""
+                    macro_value_for(name)
                 else
-                    %{\\texttt{\\%#{$3}}}
+                    %{<code>%#{name}</code>}
                 end
             else
                 m

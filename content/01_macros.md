@@ -7,8 +7,8 @@ macro %%%
 %%% complex %%% ruby: (1..5).map do |x| 
 x*x 
 end.join(" : ") %%%
-LLL latex LLL \LaTeX LLL
-LLL tldr LLL {\em Too long don't read: } LLL
+LLL latex LLL \LaTeX LLL LaTeX HTML
+LLL tldr LLL {\em Too long don't read: } LLL <em>Too long don't read: </em> HTML
 
 It is a simple demonstration of how macros are working.
 They were declared inside the markdown like this:
@@ -21,8 +21,8 @@ They were declared inside the markdown like this:
      %%% complex %%% ruby: (1..5).map do |x| 
                     x*x 
                     end.join(" : ") %%%
-     LLL latex LLL \LaTeX LLL
-     LLL tldr LLL {\em Too long don't read: } LLL
+     LLL latex LLL \LaTeX LLL LaTeX HTML
+     LLL tldr LLL {\em Too long don't read: } LLL <em>Too long don't read: </em> HTML
 ~~~
 
 Now if I write:

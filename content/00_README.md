@@ -1,11 +1,11 @@
 %%% markdown %%% `markdown` %%%
 %%% kramdown %%% [`kramdown`](http://kramdown.rubyforge.org) %%%
-LLL xelatex LLL \XeLaTeX LLL
-LLL xelatex_ LLL \XeLaTeX{} LLL
-LLL latex LLL \LaTeX LLL
-LLL latex_ LLL \LaTeX{} LLL
-LLL tex LLL \TeX LLL
-LLL tex_ LLL \TeX{} LLL
+LLL xelatex LLL \XeLaTeX LLL XeLaTeX HTML
+LLL xelatex_ LLL \XeLaTeX{} LLL XeLaTeX  HTML
+LLL latex LLL \LaTeX LLL LaTeX HTML
+LLL latex_ LLL \LaTeX{} LLL LaTeX  HTML
+LLL tex LLL \TeX LLL TeX HTML
+LLL tex_ LLL \TeX{} LLL TeX  HTML
 
 # Write Books like a Hacker
 
@@ -56,8 +56,8 @@ To prove my point, simply compare a %latex_ and a %markdown file.
 
 Both file will be generated as:
 
-LLL beginbox LLL \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% LLL
-LLL endbox LLL \end{minipage}}}\medskip LLL
+LLL beginbox LLL \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% LLL <div class="box"> HTML
+LLL endbox LLL \end{minipage}}}\medskip LLL </div> HTML
 
 %beginbox
 
@@ -154,9 +154,9 @@ Remark:
 These transformations will occur on the markdown file before it is transformed in LaTeX.
 
 You can also declare macro that will be processed after the file was transformed in LaTeX.
-
-    LLL latex LLL \LaTeX LLL
-    LLL latex_ LLL \LaTeX{} LLL
+ 
+    LLL latex LLL \LaTeX LLL LaTeX HTML
+    LLL latex_ LLL \LaTeX{} LLL LaTeX  HTML
 
 In markdown, you simply write \%macroname or \%code
 and it will be transformed correctly in your pdf.

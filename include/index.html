@@ -36,10 +36,14 @@
         <script>
             var page=1;
             google.setOnLoadCallback( function() {
+
                 $('#first').click( function() { changeTo(1); });
                 $('#previous').click( function() { changeTo(page-1); });
-                $('#previous').addClass('disable');
                 $('#next').click( function() { changeTo(page+1); });
+
+                $('#previous').addClass('disable');
+                $('#first').addClass('disable');
+
                 $('#nbpages').text("Page 1 / "+nb_pages);
             });
         </script>

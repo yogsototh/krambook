@@ -59,6 +59,109 @@ task :to_html do
     x.run
 end
 
+task :khtml do
+    require 'rubygems'
+    require 'kramdown'
+    require 'filters/markdown_macros'
+    require 'filters/mkd_post_latex_macros_to_html'
+
+    class KrambookCompile
+        require 'config_html.rb'
+
+        attr_accessor :filelist
+
+        # take a string from kramdown 
+        # returns LaTeX after filter
+        def compile_text(tmp)
+            @prefilters.each do |f| 
+                tmp=f.run( tmp )
+            end
+
+            # compile to latex
+            tmp=Kramdown::Document.new(tmp, :latex_headers => %w(chapter section subsection paragraph subparagraph subsubparagraph)).to_html
+
+            # post filters
+            @postfilters.each{ |f| tmp=f.run(tmp) }
+            return tmp
+        end
+
+        def process_template
+            puts "PROCESS: "+@template_file
+            txt=File.read(@template_file)
+
+            # puts "READ: " + txt
+            txt.sub!( /<!-- INCLUDES -->/ ) do
+                    puts "HERE"
+                    @filelist.map do |source,dest| 
+                         %{<div class="block left">
+                             <h3>
+                                 <a href="#{dest.sub(/^tmp\//,'')}">
+                                     #{File::basename(dest,'.html')}
+                                     <span class="nicer">»</span>
+                                 </a>
+                             </h3>
+                         </div>}
+                    end.join("\n") + '</ul>'
+                end
+            # puts "AFTER INCLUDES: " + txt
+            txt.gsub!(%r{<!-- Author -->},@author)
+            # puts "AFTER AUTHOR: " + txt
+            txt.gsub!(%r{<!-- Title -->},@title)
+            txt.gsub!(%r{<!-- Subtitle -->},@subtitle)
+            # puts "AFTER TITLE: " + txt
+            txt.sub!( %r{<!-- HTML HEADER -->},@html_headers) 
+            # puts "AFTER HTML HEADER: " + txt
+            fic=File.new("tmp/#{@pdfname}.html","w")
+            fic.write(txt)
+            fic.close
+        end
+
+        def initialize
+
+            eval File.new('config_html.rb','r').read
+
+            @prefilters=[]
+            @prefilters<<=MarkdownMacros.new
+
+            @postfilters=[]
+            @postfilters<<=MarkdownPostLatexMacrosToHTML.new
+
+            @filelist=Dir.glob("content/**/*.md").sort.map do |fic|
+                    [ fic, fic.sub(/^content\//,"tmp/").sub(/.md$/,".html") ]
+                end
+        end
+
+        def run
+            @filelist.each do |doublon|
+                source=doublon[0]
+                dest=doublon[1]
+                puts source
+
+                # read and compile in LaTeX the .md file
+                text=compile_text( File.new(source,"r").read )
+
+                # create directory if necessary
+                if not FileTest::directory?(File.dirname(dest))
+                    FileUtils.mkdir_p(File.dirname(dest)) 
+                end
+
+                # write the .tex file
+                fic = File.new(dest,"w")
+                fic.write(text)
+                fic.close
+
+            end
+
+            # write the .tex file containing all includes
+            process_template
+
+            system("cp -rf include tmp/")
+            # system("open tmp/#{@pdfname}.html")
+        end
+    end
+    KrambookCompile.new.run
+end
+
 task :compile do
     require 'rubygems'
     require 'kramdown'
