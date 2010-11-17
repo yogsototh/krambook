@@ -7,8 +7,57 @@ CLEAN.include('**/*.{aux,log,out}')
 CLEAN.include('tmp/**/*')
 CLOBBER.include('**/*.pdf')
 CLOBBER.include('content/**/*.tex')
+CLOBBER.include('site/**/*')
 
 task :default => [:compile]
+
+task :to_html do
+    class HTMLCompile
+        def initialize
+            eval File.read('config.rb')
+            puts @pdfname
+        end
+
+        def run
+            FileUtils.mkdir_p("site") 
+
+            if not FileTest.exists?( "tmp/#{@pdfname}.pdf" )
+                puts "run `rake compile` to generate the pdf file please"
+                exit 1
+            end
+            command=%{pdf2svg tmp/#{@pdfname}.pdf site/#{@pdfname}-%d.svg all}
+            system(command)
+            hdecal=110
+            vdecal=120
+            nb_pages=0
+            Dir["site/*.svg"].each do |fic|
+                f=File.open(fic,"r")
+                res=f.read().sub( /viewBox="(\d+) (\d+) (\d+) (\d+)"/) do
+                    res=%{viewBox="}
+                    res<<=%{#{Integer($1) + hdecal} }
+                    res<<=%{#{Integer($2) + vdecal} }
+                    res<<=%{#{Integer($3) - hdecal} }
+                    res<<=%{#{Integer($4) - vdecal}"} 
+                end
+                f.close
+                f=File.open(fic,"w")
+                f.write( res )
+                f.close
+                nb_pages+=1
+            end
+            target=File.open("site/index.html","w")
+            src=File.open("include/index.html","r")
+            res=src.read()
+            src.close
+
+            res.sub!("var nb_pages=0","var nb_pages=#{nb_pages}")
+            target.write(res)
+            target.close
+        end
+    end
+    x=HTMLCompile.new
+    x.run
+end
 
 task :compile do
     require 'rubygems'

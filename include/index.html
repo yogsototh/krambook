@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <script src="https://www.google.com/jsapi"></script>
+        <script>
+            google.load('jquery', '1.4.4');
+
+            var nb_pages=0;
+
+            function changeTo(n) {
+                    page = page + n;
+                    if (page == 1) {
+                        page=1;
+                        $('#previous').addClass('disable');
+                    } else if (page == nb_pages) {
+                        $('#next').addClass('disable');
+                    } else if (page<1) {
+                        page=1;
+                        return;
+                    } else if (page>nb_pages) {
+                        page=nb_pages;
+                        return;
+                    } else {
+                        $('#previous').removeClass('disable');
+                        $('#next').removeClass('disable');
+                    }
+                    fic = "krambook-" + page + ".svg";
+                    console.log("fic = " + fic);
+                    $('#frame').attr('src', fic );
+                    $('#nbpages').text("Page "+ page +" / "+nb_pages);
+            }
+
+        </script>
+        <script>
+            var page=1;
+            google.setOnLoadCallback( function() {
+                $('#previous').click( function() { changeTo(-1); });
+                $('#previous').addClass('disable');
+                $('#next').click( function() { changeTo(1); });
+                $('#nbpages').text("Page 1 / "+nb_pages);
+            });
+        </script>
+        <style>
+            #leftcolumn {float: left; width: 7em}
+            #rightcolumn {float: right; width: 7em}
+            .button {
+                width: 7em; 
+                height: 3em; 
+                background: #ccc; 
+                color: #333; 
+                border-radius: 2px;
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                font-weight: bold; 
+                cursor: pointer; 
+                text-align: center;
+                line-height: 3em; }
+
+            .disable {
+                cursor: default;
+                opacity: .3 }
+
+            #nbpages{ 
+                float: right; 
+                width: 7em;
+                height: 3em; 
+                line-height: 3em;
+                background: #eee; 
+                text-align: center; }
+
+            #content {margin-left: auto; margin-right: auto; text-align: center}
+            #frame {
+                text-align: center; margin-left: auto; margin-right: auto;
+                width: 492pt; height: 672pt; border: 1px solid #ccc}
+        </style>
+    </head>
+    <body>
+        <div id="leftcolumn">
+            <div id="previous" class="button">Previous</div>
+        </div>
+        <div id="rightcolumn">
+            <div id="next" class="button">Next</div>
+            <div id="nbpages"> Page 1 / ?? </div>
+        </div>
+        <div id="content">
+        <iframe id="frame" src="krambook-1.svg" style=""frameborder="0" scrolling="no" ></iframe>
+        </div>
+    </body>
+</html>
