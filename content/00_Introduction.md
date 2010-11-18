@@ -61,15 +61,17 @@ Now a markdown file to render with the same meaning:
 
 The HTML end result using the markdown will be:
 
+%beginbox
 
-> First section
-> =============
+> ### First section
 > 
 > I begin by making a list of bullet points:
 > 
 > - the first point is %latex is a bit verbose
 > - the second point is %latex has _more_ \ than Markdown
 > - I believe you understood now
+
+%endbox
 
 Then I believe I don't have to convince more you that the markdown syntax is more natural than the %latex one.
 
