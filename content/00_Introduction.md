@@ -1,19 +1,31 @@
-%%% markdown %%% `markdown` %%%
-%%% kramdown %%% [`kramdown`](http://kramdown.rubyforge.org) %%%
-LLL xelatex LLL \XeLaTeX LLL XeLaTeX HTML
-LLL xelatex_ LLL \XeLaTeX{} LLL XeLaTeX  HTML
-LLL latex LLL \LaTeX LLL LaTeX HTML
-LLL latex_ LLL \LaTeX{} LLL LaTeX  HTML
-LLL tex LLL \TeX LLL TeX HTML
-LLL tex_ LLL \TeX{} LLL TeX  HTML
+MACRO(markdown) = `markdown` ENDMACRO
+MACRO(kramdown) = [`kramdown`](http://kramdown.rubyforge.org) ENDMACRO
+
+POSTMACRO(beginbox) = LATEX: \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% HTML: <div class="encadre"> ENDMACRO
+
+POSTMACRO(endbox) = LATEX: \end{minipage}}}\medskip HTML: </div> ENDMACRO
+
+
+POSTMACRO(xelatex) = LATEX: \XeLaTeX HTML: <span style="text-transform: uppercase">X<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">&#x018E;</sub>L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span> ENDMACRO
+
+POSTMACRO(xelatex_) = LATEX: \XeLaTeX{} HTML: <span style="text-transform: uppercase">X<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">&#x018E;</sub>L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>  ENDMACRO
+
+POSTMACRO(latex) = LATEX: \LaTeX HTML: <span style="text-transform: uppercase">L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span> ENDMACRO
+
+POSTMACRO(latex_) = LATEX: \LaTeX{} HTML:  <span style="text-transform: uppercase">L<sup style="vertical-align: 0.15em; margin-left: -0.36em; margin-right: -0.15em; font-size: .85em">a</sup>T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>  ENDMACRO
+
+POSTMACRO(tex) = LATEX: \TeX HTML: <span style="text-transform: uppercase">T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span> ENDMACRO
+
+POSTMACRO(tex_) = LATEX: \TeX{} HTML: <span style="text-transform: uppercase">T<sub style="vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; font-size: 1em">e</sub>X</span>  ENDMACRO
 
 # Introduction
 
 ## What is this project?
 
 This project intends to provide you a cool way to write a book.
-You write your book using your editor of choice using a %markdown syntax. 
-The book can then be generated as PDF using %xelatex or to an [HTML website]().
+
+You write text file using the natural markdown syntax.
+The book can then be generated as PDF using %xelatex or to an HTML website.
 
 You can see examples of standard end result here:
 
@@ -48,7 +60,7 @@ Unfortunately %latex was created a long time ago and its syntax is full of backs
     \end{itemize}
     \end{document}
 
-Now a markdown file to render with the same meaning:
+To achieve a similar result using %markdown syntax:
 
     First section
     =============
@@ -73,7 +85,8 @@ The HTML end result using the markdown will be:
 
 %endbox
 
-Then I believe I don't have to convince more you that the markdown syntax is more natural than the %latex one.
+Then I believe this example should be enough to convince you 
+that the %markdown is more natural than the %latex one.
 
 ### Markdown does not scale
 
@@ -84,10 +97,10 @@ Markdown lack many features that many other project have added to it.
 One of this project is [Kramdown]().
 There is many other project that expanded the abilities of Markdown.
 
-But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the TeX language.
-In fact TeX is Turing complete -- considering we have the ability to make many compilations until reaching a fixed point.
+But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the %tex_ language.
+In fact %tex_ is Turing complete -- considering we have the ability to make many compilations until reaching a fixed point.
 
-How can %latex be Turing complete?
+How can %latex_ be Turing complete?
 Simply with the power of provided by _macros_. 
 In %latex you can declare macros like this:
 

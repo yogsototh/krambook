@@ -33,7 +33,7 @@ class MarkdownPostLatexMacrosToHTML
     end
 
     def run (content)
-        content.gsub(/(^<p>\s*)?LLL (\w(\w|\d|\\_)*) LLL ((.|\n)*?) LLL( ((.|\n)*?) HTML)?((\s|\n)*<\/p>)?/m) do |m| 
+        content.gsub(/(^<p>\s*)?POSTMACRO\((\w(\w|\d|\\_)*)\) = LATEX: ((.|\n)*?) (HTML: ((.|\n)*?) )?ENDMACRO((\s|\n)*<\/p>)?/m) do |m| 
             name=$2
             value=$7.gsub('&lt;','<').gsub('&gt;','>').gsub('&amp;','&')
             puts "SAVE HTML MACRO: #{name} => #{value}"

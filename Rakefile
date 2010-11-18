@@ -14,7 +14,7 @@ CLOBBER.exclude('site/js')
 
 task :default => [:compile]
 
-task :to_html do
+task :svg do
     class HTMLCompile
         def initialize
             eval File.read('config.rb')
@@ -62,7 +62,7 @@ task :to_html do
     x.run
 end
 
-task :khtml do
+task :html do
     require 'rubygems'
     require 'kramdown'
     require 'filters/markdown_macros'

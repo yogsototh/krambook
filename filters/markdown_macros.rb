@@ -33,7 +33,7 @@ class MarkdownMacros
     end
 
     def run (content)
-        content.gsub(/^%%% (\w[a-zA-Z0-9_]*) %%% ((.|\n)*?) %%%/m) do |m| 
+        content.gsub(/^MACRO\((\w[a-zA-Z0-9_]*)\) = ((.|\n)*?) ENDMACRO/m) do |m| 
             # puts %{  mkd macro %#{$1}\t=> #{$2}}
             @macro[$1.intern]=$2
             ""

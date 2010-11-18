@@ -1,14 +1,16 @@
 ## Some other macros examples
 
-%%% multiline %%% a  
+MACRO(tldr) = Too long don't read ENDMACRO
+MACRO(multiline) = a  
 multiline  
-macro %%%
-%%% ruby %%% ruby: "a"*3 %%%
-%%% complex %%% ruby: (1..5).map do |x| 
+macro ENDMACRO
+MACRO(ruby) = ruby: "a"*3 ENDMACRO
+MACRO(complex) = ruby: (1..5).map do |x| 
 x*x 
-end.join(" : ") %%%
-LLL latex LLL \LaTeX LLL LaTeX HTML
-LLL tldr LLL {\em Too long don't read: } LLL <em>Too long don't read: </em> HTML
+end.join(" : ") ENDMACRO
+
+POSTMACRO(latex) = LATEX: \LaTeX HTML: LaTeX ENDMACRO
+POSTMACRO(tldr) = LATEX: {\em Too long don't read: } HTML: <em>Too long don't read: </em> ENDMACRO
 
 It is a simple demonstration of how macros are working.
 They were declared inside the markdown like this:

@@ -33,7 +33,7 @@ class MarkdownPostLatexMacros
     end
 
     def run (content)
-        content.gsub(/^LLL (\w(\w|\d|\\_)*) LLL ((.|\n)*?) LLL( (.|\n)*? HTML)?/m) do |m| 
+        content.gsub(/^POSTMACRO\((\w(\w|\d|\\_)*)\) = LATEX: ((.|\n)*?) (HTML: (.|\n)*? )?ENDMACRO/m) do |m| 
             name=$1
             value=$3
             # puts %{  ADD LATEX MACRO: %#{name}\t=> #{value}}

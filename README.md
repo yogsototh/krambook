@@ -1,8 +1,9 @@
 # What is this project?
 
 This project intends to provide you a cool way to write a book.
-You write your book using your editor of choice using a [markdown]() syntax. 
-The book can then be generated as PDF using [XeLaTeX]() or to an [HTML website]().
+
+You write text file using the natural markdown syntax.
+The book can then be generated as PDF using %xelatex or to an HTML website.
 
 You can see examples of standard end result here:
 
@@ -37,7 +38,7 @@ Unfortunately LaTeX was created a long time ago and its syntax is full of backsl
     \end{itemize}
     \end{document}
 
-Now a markdown file to render with the same meaning:
+To achieve a similar result using a `markdown` syntax: 
 
     First section
     =============
