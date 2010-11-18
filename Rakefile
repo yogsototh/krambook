@@ -69,6 +69,7 @@ task :html do
     require 'filters/mkd_post_latex_macros_to_html'
     require 'filters/html_template'
     require 'filters/mathjax'
+    require 'filters/links'
 
     class KrambookCompile
         require 'config_html.rb'
@@ -98,7 +99,7 @@ task :html do
             txt.sub!( /<!-- INCLUDES -->/ ) do
                     puts "HERE"
                     @filelist.map do |source,dest| 
-                         %{<div class="block left">
+                         %{<div class="block">
                              <h3>
                                  <a href="#{dest.sub(/^site\//,'')}">
                                      #{File::basename(dest,'.html').sub(/^\d+_/,'')}
@@ -137,6 +138,7 @@ task :html do
             html_template.author=@author
             html_template.html_headers=@html_headers
             html_template.homeURL="index.html"
+            @postfilters<<=Links.new
             @postfilters<<=html_template
             @postfilters<<=MathJax.new
 
@@ -154,15 +156,16 @@ task :html do
                 puts source
 
                 # read and compile in LaTeX the .md file
+                templateindex=2
                 if (i+1)<@filelist.size
-                    @postfilters[1].nextURL = '/' + @filelist[i + 1][1].gsub('site/','')
+                    @postfilters[templateindex].nextURL = '/' + @filelist[i + 1][1].gsub('site/','')
                 else
-                    @postfilters[1].nextURL = "#"
+                    @postfilters[templateindex].nextURL = "#"
                 end
                 if (i-1)>=0
-                    @postfilters[1].prevURL = '/' + @filelist[i - 1][1].gsub('site/','')
+                    @postfilters[templateindex].prevURL = '/' + @filelist[i - 1][1].gsub('site/','')
                 else
-                    @postfilters[1].prevURL = "#"
+                    @postfilters[templateindex].prevURL = "#"
                 end
                 text=compile_text( File.new(source,"r").read )
 

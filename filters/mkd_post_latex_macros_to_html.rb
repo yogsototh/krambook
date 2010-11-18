@@ -13,6 +13,8 @@
 # %%% macro_name %%% macro_value %%%
 #
 
+require "cgi"
+
 class MarkdownPostLatexMacrosToHTML
     attr_accessor :macro
     def initialize()
@@ -35,7 +37,7 @@ class MarkdownPostLatexMacrosToHTML
     def run (content)
         content.gsub(/(^<p>\s*)?POSTMACRO\((\w(\w|\d|\\_)*)\) = LATEX: ((.|\n)*?) (HTML: ((.|\n)*?) )?ENDMACRO((\s|\n)*<\/p>)?/m) do |m| 
             name=$2
-            value=$7.gsub('&lt;','<').gsub('&gt;','>').gsub('&amp;','&')
+            value=CGI::unescapeHTML($7).gsub("&rdquo;",'"')
             puts "SAVE HTML MACRO: #{name} => #{value}"
             @macro[name.intern]=value
             ""
