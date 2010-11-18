@@ -38,32 +38,32 @@ But with some simple additions: _macros_.
 Remark:
 : For now Krambook accept only macros _without_ any parameter. Here are some examples:
 
-~~~
-    %%% simple %%% A Simple Macro %%%
-    %%% amacro %%% a  
-                        macro  
-                        on many lines %%%
-    %%% code %%% ruby: "a"*3 %%%
-    %%% complex %%% ruby: (1..5).map do |x|
+<pre>
+    &#x004d;ACRO(simple) = A Simple Macro ENDMACRO
+    &#x004d;ACRO(amacro) = a  
+                       macro  
+                       on many lines ENDMACRO
+    &#x004d;ACRO(code) = ruby: "a"*3 ENDMACRO
+    &#x004d;ACRO(complex) = ruby: (1..5).map do |x|
                     x*x
-                    end.join(" : ") %%%
-~~~
+                    end.join(" : ") ENDMACRO
+</pre>
 
 These transformations will occur on the markdown file before it is transformed in %latex.
 
 You can also declare macro that will be processed after the file was transformed in %latex or in HTML.
 
 <pre>
-    &#x004c;LL tex LLL \TeX LLL TeX HTML
-    &#x004c;LL tex_ LLL \TeX{} LLL TeX  HTML
+    &#x0050;OSTMACRO(tex) = LATEX: \TeX HTML: TeX ENDMACRO
+    &#x0050;OSTMACRO(tex_) = LATEX: \TeX{} HTML: TeX  ENDMACRO
 </pre>
 
-In markdown, you simply write \%macroname or \%code
-and it will be transformed correctly in your pdf.
+To use them simply write \%macroname or \%code
+and it will be transformed correctly in your pdf or HTML.
 
 ## Some other macros examples
 
-MACRO(tldr) = Too long don't read ENDMACRO
+MACRO(tldr) = _Too long don't read:_ ENDMACRO
 MACRO(multiline) = a  
 multiline  
 macro ENDMACRO
@@ -73,22 +73,22 @@ x*x
 end.join(" : ") ENDMACRO
 
 POSTMACRO(latex) = LATEX: \LaTeX HTML: LaTeX ENDMACRO
-POSTMACRO(tldr) = LATEX: {\em Too long don't read: } HTML: <em>Too long don't read: </em> ENDMACRO
 
 It is a simple demonstration of how macros are working.
 They were declared inside the markdown like this:
 
-~~~
-     %%% multiline %%% a  
-                        multiline  
-                        macro %%%
-     %%% ruby %%% ruby: "a"*3 %%%
-     %%% complex %%% ruby: (1..5).map do |x| 
-                    x*x 
-                    end.join(" : ") %%%
-     LLL latex LLL \LaTeX LLL LaTeX HTML
-     LLL tldr LLL {\em Too long don't read: } LLL <em>Too long don't read: </em> HTML
-~~~
+<pre>
+    &#x004d;ACRO(tldr) = _Too long don't read_ ENDMACRO
+    &#x004d;ACRO(multiline) = a  
+                              multiline  
+                              macro ENDMACRO
+    &#x004d;ACRO(ruby) = ruby: "a"*3 ENDMACRO
+    &#x004d;ACRO(complex) = ruby: (1..5).map do |x| 
+                                x*x 
+                                end.join(" : ") ENDMACRO
+    
+    &#x0050;OSTMACRO(latex) = LATEX: \LaTeX HTML: LaTeX ENDMACRO
+</pre>
 
 Now if I write:
 

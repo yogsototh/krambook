@@ -283,7 +283,7 @@ task :compile do
             # make a symbolic link in order to
             # let the tempory files into tmp/
             if not FileTest::exists?("#{@pdfname}.pdf")
-                system("ln -s tmp/#{@pdfname}.pdf #{@pdfname}.pdf")
+                system("\\cp -f tmp/#{@pdfname}.pdf #{@pdfname}.pdf")
             end
 
             # open the pdf
