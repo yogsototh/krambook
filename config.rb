@@ -15,6 +15,7 @@
 # Comment the following line if you haven't 
 # Hoefler Text font installed on your system
 @latex_headers<<='\setmainfont{Hoefler Text}'
+# @latex_headers<<='\setmonofont{Monaco}'
 
 # Use colors
 @latex_headers<<='\usepackage{color}
@@ -22,7 +23,7 @@
                 \definecolor{boxcolor}{rgb}{0.96,0.96,0.96}'
 
 # Make italic and emphasis text gray
- @latex_headers<<='\renewcommand{\textit}[1]{\textcolor{italiccolor}{\it #1}}
+@latex_headers<<='\renewcommand{\textit}[1]{\textcolor{italiccolor}{\it #1}}
                 \renewcommand{\emph}[1]{\textcolor{italiccolor}{\em #1}}'
 
 # change the template file in case latex_headers is not enough 

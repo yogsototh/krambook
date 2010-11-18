@@ -94,7 +94,7 @@ that the %markdown is more natural than the %latex one.
 On the other hand Markdown wasn't created for this purpose.
 Markdown was done to provide a standard syntax to transform some text file into HTML.
 Markdown lack many features that many other project have added to it.
-One of this project is [Kramdown]().
+One of this project is [Kramdown](http://kramdown.rubyforge.org).
 There is many other project that expanded the abilities of Markdown.
 
 But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the %tex_ language.
