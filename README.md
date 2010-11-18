@@ -7,7 +7,7 @@ The book can then be generated as PDF using [XeLaTeX]() or to an [HTML website](
 # Why this project?
 
 
-## LaTeX is full of backslashes
+## Markdown is easier to read than LaTeX
 
 The best typesetting system I know is [LaTeX](http://latex-project.org).
 Unfortunately LaTeX was created a long time ago and its syntax is full of backslashes. Here is an example of a standard minimal LaTeX document:
