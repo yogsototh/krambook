@@ -119,3 +119,7 @@ You can also declare macro that will be processed after the file was transformed
 
 In markdown, you simply write %macroname or %code
 and it will be transformed correctly in your pdf.
+
+# HTML render
+
+To render math properly install MathJax into the `site/js` directory

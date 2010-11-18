@@ -7,7 +7,8 @@ CLEAN.include('**/*.{aux,log,out}')
 CLEAN.include('tmp/**/*')
 CLOBBER.include('**/*.pdf')
 CLOBBER.include('content/**/*.tex')
-CLOBBER.include('site/**/*')
+CLOBBER.include('site/**/*.html')
+CLOBBER.include('site/include/*')
 
 task :default => [:compile]
 
@@ -64,6 +65,8 @@ task :khtml do
     require 'kramdown'
     require 'filters/markdown_macros'
     require 'filters/mkd_post_latex_macros_to_html'
+    require 'filters/html_template'
+    require 'filters/mathjax'
 
     class KrambookCompile
         require 'config_html.rb'
@@ -95,7 +98,7 @@ task :khtml do
                     @filelist.map do |source,dest| 
                          %{<div class="block left">
                              <h3>
-                                 <a href="#{dest.sub(/^tmp\//,'')}">
+                                 <a href="#{dest.sub(/^site\//,'')}">
                                      #{File::basename(dest,'.html')}
                                      <span class="nicer">»</span>
                                  </a>
@@ -111,7 +114,7 @@ task :khtml do
             # puts "AFTER TITLE: " + txt
             txt.sub!( %r{<!-- HTML HEADER -->},@html_headers) 
             # puts "AFTER HTML HEADER: " + txt
-            fic=File.new("tmp/#{@pdfname}.html","w")
+            fic=File.new("site/index.html","w")
             fic.write(txt)
             fic.close
         end
@@ -125,19 +128,40 @@ task :khtml do
 
             @postfilters=[]
             @postfilters<<=MarkdownPostLatexMacrosToHTML.new
+            html_template=HTMLTemplate.new
+            html_template.template=@general_template
+            html_template.title=@title
+            html_template.subtitle=@subtitle
+            html_template.author=@author
+            html_template.html_headers=@html_headers
+            html_template.homeURL="index.html"
+            @postfilters<<=html_template
+            @postfilters<<=MathJax.new
 
             @filelist=Dir.glob("content/**/*.md").sort.map do |fic|
-                    [ fic, fic.sub(/^content\//,"tmp/").sub(/.md$/,".html") ]
+                    [ fic, fic.sub(/^content\//,"site/").sub(/.md$/,".html") ]
                 end
         end
 
         def run
+            i=-1
             @filelist.each do |doublon|
+                i+=1
                 source=doublon[0]
                 dest=doublon[1]
                 puts source
 
                 # read and compile in LaTeX the .md file
+                if (i+1)<@filelist.size
+                    @postfilters[1].nextURL = '/' + @filelist[i + 1][1].gsub('site/','')
+                else
+                    @postfilters[1].nextURL = "#"
+                end
+                if (i-1)>=0
+                    @postfilters[1].prevURL = '/' + @filelist[i - 1][1].gsub('site/','')
+                else
+                    @postfilters[1].prevURL = "#"
+                end
                 text=compile_text( File.new(source,"r").read )
 
                 # create directory if necessary
@@ -155,8 +179,7 @@ task :khtml do
             # write the .tex file containing all includes
             process_template
 
-            system("cp -rf include tmp/")
-            # system("open tmp/#{@pdfname}.html")
+            system("cp -rf include site/")
         end
     end
     KrambookCompile.new.run
