@@ -1,11 +1,114 @@
-# Write Books like a Hacker
+# What is this project?
 
-Quality and scalability of XeLaTeX _&amp;_ readable as Markdown.
-You can look at the `krambook.pdf` to see what you can achieve.
+This project intends to provide you a cool way to write a book.
+You write your book using your editor of choice using a [markdown]() syntax. 
+The book can then be generated as PDF using [XeLaTeX]() or to an [HTML website]().
 
-__Idea__: provide macros for Markdown then transform the text in Latex and generate a `pdf` file.
+# Why this project?
 
-__Why not using LaTeX directly?__
+
+## LaTeX is full of backslashes
+
+The best typesetting system I know is [LaTeX](http://latex-project.org).
+Unfortunately LaTeX was created a long time ago and its syntax is full of backslashes. Here is an example of a standard minimal LaTeX document:
+
+    
+    \documenttype{article}
+    \usepackage[utf-8]{inputenc}
+    \usepackage{fontenc}
+    \usepackage{amsmath}
+    
+    ... % This is the ritual header
+    
+    \begin{document} % ---- end of the preamble
+    \section{First section}
+    I begin by making a list of bullet points:
+    \begin{itemize}
+    \item the first point is 
+        \LaTeX is a bit verbose
+    \item the second point is 
+        \Latex has \textem{more} \textbackslash{} than Markdown
+    \item I believe you understood now.
+    \end{itemize}
+    \end{document}
+
+Now a markdown file to render with the same meaning:
+
+    First section
+    =============
+
+    I begin by making a list of bullet points:
+    
+    - the first point is LaTeX is a bit verbose
+    - the second point is LaTeX has _more_ \ than Markdown
+    - I believe you understood now
+
+The HTML end result using the markdown will be:
+
+
+> First section
+> =============
+> 
+> I begin by making a list of bullet points:
+> 
+> - the first point is LaTeX is a bit verbose
+> - the second point is LaTeX has _more_ \ than Markdown
+> - I believe you understood now
+
+Then I believe I don't have to convince more you that the markdown syntax is more natural than the LaTeX one.
+
+## Markdown does not scale
+
+LaTeX has many incredible properties that makes it scalable even for very long document.
+On the other hand Markdown wasn't created for this purpose.
+Markdown was done to provide a standard syntax to transform some text file into HTML.
+Markdown lack many features that many other project have added to it.
+One of this project is [Kramdown]().
+There is many other project that expanded the abilities of Markdown.
+
+But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the TeX language.
+In fact TeX is Turing complete -- considering we have the ability to make many compilations until reaching a fixed point.
+
+How can LaTeX be Turing complete?
+Simply with the power of provided by _macros_. 
+In LaTeX you can declare macros like this:
+
+    \newcommand{\un}{\sum_{n=0}^\infty u_n}
+
+And each time you type:
+
+    Here is a formula $\un = \pi$
+
+It will be equivalent to:
+
+    Here is a formula $\sum_{n=0}^\infty u_n = \pi$
+
+Imagine a thesis where this formula is present a hundred times and you begin to understand why macros are a necessity for long documents.
+But in LaTeX you could also declare macros with parameters and that use other declared macros:
+
+    \newcommand{\ratlang}[2]{\mathcal{S}_{#1}^{\mathrm{rat}}(#2)}
+    \newcommand{\sr}[2]{\ratlang{\mathbb{R}}(\Sigma)}
+    ...
+    Let us denote $\sr$ the class of rationnal stochastic language over $\mathbb{R}$ with alphabet $\Sigma$. 
+
+Now you see the power of LaTeX.
+
+There is also another thing that make LaTeX scalable. You can include other source files. This make it easy to separate work and also to work with many other people.
+
+Another good point with LaTeX and markdown is that you write only in text file and you can then version these file using `git` for example.
+
+The point of this project is to add the ability to write macros in Markdown (kramdown to be more precise).
+For now, the power of this superset of kramdown syntax is _not_ Turing complete.
+You can declare macros, but without any parameters and you cannot use already declared macros inside other macros declaration.
+
+# FAQ
+
+### What is the idea of the project?
+
+provide macros for Markdown then transform the text in Latex and generate a `pdf` file.
+
+### Why not using LaTeX directly?
+
 Simply because LaTeX is verbose and full of backslashes. 
 To prove my point, simply compare a LaTeX and a Markdown file.
 
@@ -46,7 +149,8 @@ Both file will be generated as:
 > - the second point is LaTeX has _more_ \ than Markdown
 > - I believe you understood now
 
-__Why macros are so necessary for long documents?__
+### Why macros are so necessary for long documents?
+
 Because without them, Markdown simply does not scale. For example imagine you can't declare `\su` to be generated as $$\sum_{n=0}^{\infty} u_n$$ in a thesis where this expression is repeated 1000 times.
 
 # Install
