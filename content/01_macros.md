@@ -61,7 +61,7 @@ this is some code block
 %latex
 : Some %latex &nbsp; definition
 
-A simple math mode $$x_i$$ and a protected one \$$x_i\$$.
+A simple math mode $$x_i$$ and a protected one \$$x_i\$$
 A long formula now:
 
 $$ \sum_{i=0}^n\sqrt{x_i + y_i} $$

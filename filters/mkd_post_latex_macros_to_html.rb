@@ -35,10 +35,23 @@ class MarkdownPostLatexMacrosToHTML
     def run (content)
         content.gsub(/(^<p>\s*)?LLL (\w(\w|\d|\\_)*) LLL ((.|\n)*?) LLL( ((.|\n)*?) HTML)?((\s|\n)*<\/p>)?/m) do |m| 
             name=$2
-            value=$7
+            value=$7.gsub('&lt;','<').gsub('&gt;','>').gsub('&amp;','&')
             puts "SAVE HTML MACRO: #{name} => #{value}"
             @macro[name.intern]=value
             ""
+        end.gsub(/<p>(\s|\n)*(\\?)%(\w[a-zA-Z0-9_]*)(\s|\n)*<\/p>/m) do |m| 
+            # puts "  ltx macro MATCH: #{$3}"
+            protected=$2
+            name=$3
+            if name != "" 
+                if protected == ""
+                    macro_value_for(name)
+                else
+                    %{<code>%#{name}</code>}
+                end
+            else
+                m
+            end
         end.gsub(/(\\?)%(\w[a-zA-Z0-9_]*)/) do |m| 
             # puts "  ltx macro MATCH: #{$3}"
             protected=$1

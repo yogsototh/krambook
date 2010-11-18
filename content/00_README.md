@@ -56,7 +56,7 @@ To prove my point, simply compare a %latex_ and a %markdown file.
 
 Both file will be generated as:
 
-LLL beginbox LLL \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% LLL <div class="box"> HTML
+LLL beginbox LLL \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% LLL <div class="encadre"> HTML
 LLL endbox LLL \end{minipage}}}\medskip LLL </div> HTML
 
 %beginbox

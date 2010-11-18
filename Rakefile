@@ -99,7 +99,7 @@ task :khtml do
                          %{<div class="block left">
                              <h3>
                                  <a href="#{dest.sub(/^site\//,'')}">
-                                     #{File::basename(dest,'.html')}
+                                     #{File::basename(dest,'.html').sub(/^\d+_/,'')}
                                      <span class="nicer">»</span>
                                  </a>
                              </h3>
