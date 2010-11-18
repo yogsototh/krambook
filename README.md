@@ -4,6 +4,11 @@ This project intends to provide you a cool way to write a book.
 You write your book using your editor of choice using a [markdown]() syntax. 
 The book can then be generated as PDF using [XeLaTeX]() or to an [HTML website]().
 
+You can see examples of standard end result here:
+
+- [PDF](krambook.pdf)
+- [HTML](http://yannesposito.com/krambook)
+
 # Why this project?
 
 
@@ -106,6 +111,7 @@ The purposes of this project are
 
 For now, the power of this superset of kramdown syntax is _not_ Turing complete.
 You can declare macros, but without any parameters and you cannot use already declared macros inside other macros declaration.
+But this simple addition to markdown is already powerful enough for most of usage.
 
 # FAQ
 

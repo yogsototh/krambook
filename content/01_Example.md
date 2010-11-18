@@ -1,12 +1,3 @@
-%%% markdown %%% `markdown` %%%
-%%% kramdown %%% [`kramdown`](http://kramdown.rubyforge.org) %%%
-LLL xelatex LLL \XeLaTeX LLL XeLaTeX HTML
-LLL xelatex_ LLL \XeLaTeX{} LLL XeLaTeX  HTML
-LLL latex LLL \LaTeX LLL LaTeX HTML
-LLL latex_ LLL \LaTeX{} LLL LaTeX  HTML
-LLL tex LLL \TeX LLL TeX HTML
-LLL tex_ LLL \TeX{} LLL TeX  HTML
-
 # Write Books like a Hacker
 
 Quality and scalability of %xelatex_ _&amp;_ readable as %markdown.
