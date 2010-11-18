@@ -97,7 +97,12 @@ There is also another thing that make LaTeX scalable. You can include other sour
 
 Another good point with LaTeX and markdown is that you write only in text file and you can then version these file using `git` for example.
 
-The point of this project is to add the ability to write macros in Markdown (kramdown to be more precise).
+The purposes of this project are 
+- Handle long documents by:
+  - adding macros to kramdown
+  - working with many small and versionnable text files
+- generate high-quality PDF _and_ HTML documents.
+
 For now, the power of this superset of kramdown syntax is _not_ Turing complete.
 You can declare macros, but without any parameters and you cannot use already declared macros inside other macros declaration.
 
