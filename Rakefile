@@ -8,7 +8,9 @@ CLEAN.include('tmp/**/*')
 CLOBBER.include('**/*.pdf')
 CLOBBER.include('content/**/*.tex')
 CLOBBER.include('site/**/*.html')
+CLOBBER.include('site/**/*.svg')
 CLOBBER.include('site/include/*')
+CLOBBER.exclude('site/js')
 
 task :default => [:compile]
 

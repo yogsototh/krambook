@@ -42,7 +42,7 @@ use Rack::TryStatic,
     :urls => %w[/],                                 # match all requests 
     :try => ['.html', 'index.html', '/index.html']  # try these postfixes sequentially
 
-errorFile='site/404.html'
+errorFile='site/include/404.html'
 run lambda { [404, {
                 "Last-Modified"  => File.mtime(errorFile).httpdate,
                 "Content-Type"   => "text/html",
