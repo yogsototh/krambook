@@ -28,7 +28,8 @@ task :svg do
                 puts "run `rake compile` to generate the pdf file please"
                 exit 1
             end
-            command=%{pdf2svg tmp/#{@pdfname}.pdf site/#{@pdfname}-%d.svg all}
+            command=%{pdf2svg tmp/#{@pdfname}.pdf svgsite/#{@pdfname}-%d.svg all}
+            puts command
             system(command)
             hdecal=110
             vdecal=120
