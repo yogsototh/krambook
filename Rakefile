@@ -281,11 +281,7 @@ task :compile do
             # on Ubuntu replace by
             # system("gnome-open #{@pdfname}.pdf")
 
-            # make a symbolic link in order to
-            # let the tempory files into tmp/
-            if not FileTest::exists?("#{@pdfname}.pdf")
-                system("\\cp -f tmp/#{@pdfname}.pdf #{@pdfname}.pdf")
-            end
+            system("\\cp -f tmp/#{@pdfname}.pdf #{@pdfname}.pdf")
 
             # open the pdf
             system("open tmp/#{@pdfname}.pdf")
