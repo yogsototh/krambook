@@ -29,6 +29,7 @@ task :svg do
                 exit 1
             end
             command=%{pdf2svg tmp/#{@pdfname}.pdf svgsite/#{@pdfname}-%d.svg all}
+            puts command
             system(command)
             hdecal=110
             vdecal=120
@@ -92,12 +93,10 @@ task :html do
         end
 
         def process_template
-            puts "PROCESS: "+@template_file
             txt=File.read(@template_file)
 
             # puts "READ: " + txt
             txt.sub!( /<!-- INCLUDES -->/ ) do
-                    puts "HERE"
                     @filelist.map do |source,dest| 
                          %{<div class="block">
                              <h3>
