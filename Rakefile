@@ -28,12 +28,12 @@ task :svg do
                 puts "run `rake compile` to generate the pdf file please"
                 exit 1
             end
-            command=%{pdf2svg tmp/#{@pdfname}.pdf site/#{@pdfname}-%d.svg all}
+            command=%{pdf2svg tmp/#{@pdfname}.pdf svgsite/#{@pdfname}-%d.svg all}
             system(command)
             hdecal=110
             vdecal=120
             nb_pages=0
-            Dir["site/*.svg"].each do |fic|
+            Dir["svgsite/*.svg"].each do |fic|
                 f=File.open(fic,"r")
                 res=f.read().sub( /viewBox="(\d+) (\d+) (\d+) (\d+)"/) do
                     res=%{viewBox="}
@@ -48,7 +48,7 @@ task :svg do
                 f.close
                 nb_pages+=1
             end
-            target=File.open("site/index.html","w")
+            target=File.open("svgsite/index.html","w")
             src=File.open("include/index.html","r")
             res=src.read()
             src.close

@@ -10,9 +10,11 @@
             function changeTo(n) {
                     page = n;
                     if (page == 1) {
-                        page=1;
                         $('#previous').addClass('disable');
                         $('#first').addClass('disable');
+                        if (nb_pages>1) {
+                            $('#next').removeClass('disable');
+                        }
                     } else if (page == nb_pages) {
                         $('#next').addClass('disable');
                     } else if (page<1) {
