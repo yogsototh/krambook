@@ -7,8 +7,9 @@ The book can then be generated as PDF using %xelatex or to an HTML website.
 
 You can see examples of standard end result here:
 
-- [PDF](krambook.pdf)
-- [HTML](http://yannesposito.com/krambook)
+- [PDF](http://krambook.espozito.com/krambook.pdf)
+- [HTML](http://krambook.espozito.com/)
+- [SVG](http://svgkrambook.espozito.com/)
 
 # Why this project?
 
