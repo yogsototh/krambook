@@ -74,6 +74,7 @@ task :html do
 
     class KrambookCompile
         require 'config_html.rb'
+        require 'date'
 
         attr_accessor :filelist
 
@@ -108,6 +109,7 @@ task :html do
                          </div>}
                     end.join("\n") + '</ul>'
                 end
+            txt.gsub!(%r{<!-- Date -->},Date.today.to_s)
             # puts "AFTER INCLUDES: " + txt
             txt.gsub!(%r{<!-- Author -->},@author)
             # puts "AFTER AUTHOR: " + txt
