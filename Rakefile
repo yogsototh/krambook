@@ -92,12 +92,10 @@ task :html do
         end
 
         def process_template
-            puts "PROCESS: "+@template_file
             txt=File.read(@template_file)
 
             # puts "READ: " + txt
             txt.sub!( /<!-- INCLUDES -->/ ) do
-                    puts "HERE"
                     @filelist.map do |source,dest| 
                          %{<div class="block">
                              <h3>

@@ -38,7 +38,7 @@ class MarkdownPostLatexMacrosToHTML
         content.gsub(/(^<p>\s*)?POSTMACRO\((\w(\w|\d|\\_)*)\) = LATEX: ((.|\n)*?) (HTML: ((.|\n)*?) )?ENDMACRO((\s|\n)*<\/p>)?/m) do |m| 
             name=$2
             value=CGI::unescapeHTML($7).gsub("&rdquo;",'"')
-            puts "SAVE HTML MACRO: #{name} => #{value}"
+            # puts "SAVE HTML MACRO: #{name} => #{value}"
             @macro[name.intern]=value
             ""
         end.gsub(/<p>(\s|\n)*(\\?)%(\w[a-zA-Z0-9_]*)(\s|\n)*<\/p>/m) do |m| 
