@@ -1,5 +1,6 @@
 MACRO(markdown) = `markdown` ENDMACRO
 MACRO(kramdown) = [`kramdown`](http://kramdown.rubyforge.org) ENDMACRO
+MACRO(krambook) = [`krambook`](http://krambook.espozito.com) ENDMACRO
 
 POSTMACRO(beginbox) = LATEX: \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% HTML: &lt;div class="encadre"&gt; ENDMACRO
 
@@ -20,22 +21,16 @@ POSTMACRO(tex_) = LATEX: \TeX{} HTML: <span style="text-transform: uppercase">T<
 
 # Introduction
 
-## What is this project?
+%krambook provide you a _cool_ way to write a book.
 
-This project intends to provide you a cool way to write a book.
+You use a markdown syntax and the book can then be generated:
 
-You write text file using the natural markdown syntax.
-The book can then be generated as PDF using %xelatex or to an HTML website.
-
-You can see examples of standard end result here:
-
-- [PDF](http://krambook.espozito.com/krambook.pdf)
-- [HTML](http://krambook.espozito.com/)
-- [SVG](http://svgkrambook.espozito.com/)
+- as [PDF](http://krambook.espozito.com/krambook.pdf) using %xelatex
+- into a static [HTML](http://krambook.espozito.com/) website
+- into a website that display you PDF in [SVG](http://svgkrambook.espozito.com/)
 
 
 ## Why this project?
-
 
 ### Markdown is easier to read than %latex
 
