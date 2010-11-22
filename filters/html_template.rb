@@ -19,8 +19,20 @@ class HTMLTemplate
             @author
         end.gsub(%{/NEXT_URL/}) do
             @nextURL
+        end.gsub(%{<!-- NEXT_LINK -->}) do
+            if @nextURL == '#'
+                %{<a class="disable" href="#{@nextURL}">next&nbsp;<span class="nicer">»</span></a>}
+            else
+                %{<a href="#{@nextURL}">next&nbsp;<span class="nicer">»</span></a>}
+            end
         end.gsub(%{/PREV_URL/}) do
             @prevURL
+        end.gsub(%{<!-- PREV_LINK -->}) do
+            if @prevURL == '#'
+                %{<a class="disable" href="#{@prevURL}">prev&nbsp;<span class="nicer">»</span></a>}
+            else
+                %{<a href="#{@prevURL}"><span class="nicer">«</span>&nbsp;prev</a>}
+            end
         end.gsub(%{/HOME_URL/}) do
             @homeURL
         end.gsub(%{<!-- HTML HEADERS -->}) do
