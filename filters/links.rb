@@ -4,7 +4,7 @@ class Links
             if $2 == '#'
                 $&
             else
-                $1+$3+%{<sup>*</sup>}+$4
+                $1+$3+%{<sup><sub>*</sub></sup>}+$4
             end
         end
     end

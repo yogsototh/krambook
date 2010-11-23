@@ -23,8 +23,7 @@ But if you are using Ubuntu the following command line should be enough:
     [Ubuntu]> sudo apt-get install ruby rake
 
 2. In order to install the %kramdown gem:
-
-    > gem install kramdown
+   <pre>> gem install kramdown</pre>
 
 3. To install %xelatex, I suggest you to use [TexLive](http://www.tug.org/texlive/) full install to be certain not lacking anything. 
 Of course you are free to use any other distribution that suit you better.
