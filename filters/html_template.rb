@@ -1,3 +1,4 @@
+require 'date'
 class HTMLTemplate
     attr_accessor :template
     attr_accessor :title
@@ -13,6 +14,8 @@ class HTMLTemplate
             content
         end.gsub(/<!-- Title -->/) do
             @title
+        end.gsub(/<!-- Date -->/) do
+            Date.today.to_s
         end.gsub(/<!-- Subtitle -->/) do
             @subtitle
         end.gsub(/<!-- Author -->/) do
