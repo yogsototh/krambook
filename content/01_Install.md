@@ -1,5 +1,7 @@
 # Install
 
+## Prerequisite
+
 If you are reading these lines 
 chances are great that your system contains all necessary packages.
 But here are the dependencies:
@@ -21,7 +23,6 @@ Optionally you'll need:
 1. You'll need to install ruby and rake. 
 They should be present on your system. 
 But if you are using Ubuntu the following command line should be enough:
-
     <pre>[Ubuntu]> sudo apt-get install ruby rake</pre>
 
 2. In order to install the %kramdown gem:
