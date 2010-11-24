@@ -16,11 +16,13 @@ Optionally you'll need:
 
 [^1]: %kramdown is an amelioration of the original markdown format.
 
+## The steps
+
 1. You'll need to install ruby and rake. 
 They should be present on your system. 
 But if you are using Ubuntu the following command line should be enough:
 
-    [Ubuntu]> sudo apt-get install ruby rake
+    <pre>[Ubuntu]> sudo apt-get install ruby rake</pre>
 
 2. In order to install the %kramdown gem:
    <pre>> gem install kramdown</pre>
