@@ -15,7 +15,7 @@ Now it is time to create your own book:
 - Edit the `config.rb` file (set title, author name and the pdf filename)
 - Create and write files in the `content` folder.  
   You should write them using the [kramdown](http://kramdown.rubyforge.org/) format. 
-  Very close to the %mardown format.
+  Very close to the %markdown format.
 
   Remark: 
   : by default file are sorted by name.  I suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc...  You can make a bit of `ruby` (search `@filelist` in the `Rakefile` file) to change this behaviour.
