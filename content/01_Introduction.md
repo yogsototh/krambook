@@ -73,10 +73,10 @@ Markdown lack many features that many other project have added to it.
 One of this project is [Kramdown](http://kramdown.rubyforge.org).
 There is many other project that expanded the abilities of Markdown.
 
-But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the %tex_ language.
-In fact %tex_ is Turing complete -- considering we have the ability to make many compilations until reaching a fixed point.
+But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the %tex language.
+In fact %tex is Turing complete -- considering we have the ability to make many compilations until reaching a fixed point.
 
-How can %latex_ be Turing complete?
+How can %latex be Turing complete?
 Simply with the power of provided by _macros_. 
 In %latex you can declare macros like this:
 

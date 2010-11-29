@@ -55,7 +55,6 @@ You can also declare macro that will be processed after the file was transformed
 
 <pre>
     &#x0050;OSTMACRO(tex) = LATEX: \TeX HTML: TeX ENDMACRO
-    &#x0050;OSTMACRO(tex_) = LATEX: \TeX{} HTML: TeX  ENDMACRO
 </pre>
 
 To use them simply write \%macroname or \%code
