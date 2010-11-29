@@ -99,14 +99,18 @@ task :html do
             # puts "READ: " + txt
             txt.sub!( /<!-- INCLUDES -->/ ) do
                     @filelist.map do |source,dest| 
-                         %{<div class="block">
-                             <h3>
-                                 <a href="#{dest.sub(/^site\//,'')}">
-                                     #{File::basename(dest,'.html').sub(/^\d+_/,'')}
-                                     <span class="nicer">»</span>
-                                 </a>
-                             </h3>
-                         </div>}
+                        if File::basename(source) == '00_Macros.md'
+                            ""
+                        else
+                            %{<div class="block">
+                                <h3>
+                                    <a href="#{dest.sub(/^site\//,'')}">
+                                        #{File::basename(dest,'.html').sub(/^\d+_/,'')}
+                                        <span class="nicer">»</span>
+                                    </a>
+                                </h3>
+                            </div>}
+                        end
                     end.join("\n") + '</ul>'
                 end
             txt.gsub!(%r{<!-- Date -->},Date.today.to_s)
