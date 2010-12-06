@@ -78,6 +78,31 @@ task :html do
 
         attr_accessor :filelist
 
+        def initialize
+
+            eval File.new('config_html.rb','r').read
+
+            @prefilters=[]
+            @prefilters<<=MarkdownMacros.new
+            @prefilters<<=MarkdownPostMacros.new
+
+            @postfilters=[]
+            html_template=HTMLTemplate.new
+            html_template.template=@general_template
+            html_template.title=@title
+            html_template.subtitle=@subtitle
+            html_template.author=@author
+            html_template.html_headers=@html_headers
+            html_template.homeURL="index.html"
+            @postfilters<<=Links.new
+            @postfilters<<=html_template
+            @postfilters<<=MathJax.new
+
+            @filelist=Dir.glob("content/**/*.md").sort.map do |fic|
+                    [ fic, fic.sub(/^content\//,"site/").sub(/.md$/,".html") ]
+                end
+        end
+
         # take a string from kramdown 
         # returns LaTeX after filter
         def compile_text(tmp)
@@ -86,7 +111,8 @@ task :html do
             end
 
             # compile to latex
-            tmp=Kramdown::Document.new(tmp, :latex_headers => %w(chapter section subsection paragraph subparagraph subsubparagraph)).to_html
+            # puts tmp
+            tmp=Kramdown::Document.new(tmp).to_html
 
             # post filters
             @postfilters.each{ |f| tmp=f.run(tmp) }
@@ -125,31 +151,6 @@ task :html do
             fic=File.new("site/index.html","w")
             fic.write(txt)
             fic.close
-        end
-
-        def initialize
-
-            eval File.new('config_html.rb','r').read
-
-            @prefilters=[]
-            @prefilters<<=MarkdownMacros.new
-            @prefilters<<=MarkdownPostMacros.new
-
-            @postfilters=[]
-            html_template=HTMLTemplate.new
-            html_template.template=@general_template
-            html_template.title=@title
-            html_template.subtitle=@subtitle
-            html_template.author=@author
-            html_template.html_headers=@html_headers
-            html_template.homeURL="index.html"
-            @postfilters<<=Links.new
-            @postfilters<<=html_template
-            @postfilters<<=MathJax.new
-
-            @filelist=Dir.glob("content/**/*.md").sort.map do |fic|
-                    [ fic, fic.sub(/^content\//,"site/").sub(/.md$/,".html") ]
-                end
         end
 
         def run

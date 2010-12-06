@@ -29,7 +29,7 @@ class MarkdownPostMacros
 
     def run (content)
         content.gsub(/^POSTMACRO\((\w[a-zA-Z0-9_]*)\) = LATEX: ((.|\n)*?) HTML: ((.|\n)*?) ENDMACRO/m) do |m| 
-            puts %{  mkd macro %#{$1}\t [:latex] => #{$2} [:html] => #{$4}}
+            # puts %{  mkd macro %#{$1}\t [:latex] => #{$2} [:html] => #{$4}}
             @macro[$1.intern]='{::nomarkdown type="latex"}'+$2+'{:/nomarkdown}{::nomarkdown type="html"}'+$4+'{:/nomarkdown}'
             ""
         end.gsub(/((\\)?)%(\w[a-zA-Z0-9_]*)/) do |m| 

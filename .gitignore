@@ -5,3 +5,4 @@ my_book.tex
 tmp/
 site/
 svgsite/
+include/.sass-cache
