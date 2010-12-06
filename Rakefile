@@ -69,6 +69,7 @@ task :html do
     require 'filters/markdown_macros'
     require 'filters/markdown_postmacros'
     require 'filters/html_template'
+    require 'filters/fix_postmacros'
     require 'filters/mathjax'
     require 'filters/links'
 
@@ -85,6 +86,7 @@ task :html do
             @prefilters=[]
             @prefilters<<=MarkdownMacros.new
             @prefilters<<=MarkdownPostMacros.new
+            @prefilters<<=FixPostMacros.new
 
             @postfilters=[]
             html_template=HTMLTemplate.new
@@ -201,6 +203,7 @@ task :compile do
     require 'kramdown'
     require 'filters/markdown_macros'
     require 'filters/markdown_postmacros'
+    require 'filters/fix_postmacros_latex'
 
     class KrambookCompile
         require 'config.rb'
@@ -247,6 +250,7 @@ task :compile do
             @prefilters=[]
             @prefilters<<=MarkdownMacros.new
             @prefilters<<=MarkdownPostMacros.new
+            @prefilters<<=FixPostMacros.new
 
             @postfilters=[]
 

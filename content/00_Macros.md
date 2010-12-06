@@ -2,9 +2,7 @@ MACRO(markdown) = `markdown` ENDMACRO
 MACRO(kramdown) = [`kramdown`](http://kramdown.rubyforge.org) ENDMACRO
 MACRO(krambook) = [`krambook`](http://krambook.espozito.com) ENDMACRO
 
-MACRO(beginbox) = {::nomarkdown type="latex"}\medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% {:/nomarkdown} {::nomarkdown type="html"}<div class="encadre"> {:/nomarkdown} ENDMACRO
-
-PYOSTMACRO(beginbox) = LATEX: \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% HTML: <div class="encadre"> ENDMACRO
+POSTMACRO(beginbox) = LATEX: \medskip\fbox{\colorbox{boxcolor}{\begin{minipage}{.80\linewidth}% HTML: <div class="encadre"> ENDMACRO
 
 POSTMACRO(endbox) = LATEX: \end{minipage}}}\medskip HTML: </div> ENDMACRO
 
