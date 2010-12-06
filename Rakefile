@@ -67,7 +67,7 @@ task :html do
     require 'rubygems'
     require 'kramdown'
     require 'filters/markdown_macros'
-    require 'filters/mkd_post_latex_macros_to_html'
+    require 'filters/markdown_postmacros'
     require 'filters/html_template'
     require 'filters/mathjax'
     require 'filters/links'
@@ -133,9 +133,9 @@ task :html do
 
             @prefilters=[]
             @prefilters<<=MarkdownMacros.new
+            @prefilters<<=MarkdownPostMacros.new
 
             @postfilters=[]
-            @postfilters<<=MarkdownPostLatexMacrosToHTML.new
             html_template=HTMLTemplate.new
             html_template.template=@general_template
             html_template.title=@title
@@ -161,7 +161,7 @@ task :html do
                 puts source
 
                 # read and compile in LaTeX the .md file
-                templateindex=2
+                templateindex=1
                 if (i+1)<@filelist.size
                     @postfilters[templateindex].nextURL = '/' + @filelist[i + 1][1].gsub('site/','')
                 else
@@ -199,7 +199,7 @@ task :compile do
     require 'rubygems'
     require 'kramdown'
     require 'filters/markdown_macros'
-    require 'filters/mkd_post_latex_macros'
+    require 'filters/markdown_postmacros'
 
     class KrambookCompile
         require 'config.rb'
@@ -245,9 +245,9 @@ task :compile do
 
             @prefilters=[]
             @prefilters<<=MarkdownMacros.new
+            @prefilters<<=MarkdownPostMacros.new
 
             @postfilters=[]
-            @postfilters<<=MarkdownPostLatexMacros.new
 
             @filelist=Dir.glob("content/**/*.md").sort.map do |fic|
                     [ fic, fic.sub(/^content\//,"tmp/").sub(/.md$/,".tex") ]
