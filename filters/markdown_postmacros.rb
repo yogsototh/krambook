@@ -38,8 +38,7 @@ class MarkdownPostMacros
                 if $1 == ""
                     macro_value_for($3)
                 else
-                    # '`%'+$3+'`'
-                    m
+                    '`%'+$3+'`'
                 end
             else
                 m
