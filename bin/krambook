@@ -1,0 +1,78 @@
+#!/usr/bin/env zsh
+
+krambookDir="$(dirname $(dirname $0))"
+
+FORCE=0; [[ $1 = '-f' ]] && { FORCE=1; shift }
+
+(($#<1)) && {
+    print -- "usage: $0:t [-f] project_name"
+    exit 1
+}>&2
+
+projectName=$1
+
+((FORCE==1)) && {
+    [[ -e $projectName ]] && { \rm -rf $projectName }
+}
+
+[[ -e $projectName ]] && {
+    print -- "$projectName already exists"
+    exit 1
+}>&2
+
+mkdir $projectName
+
+for fic in $krambookDir/{filters,include,config.ru,Rakefile}; do
+    cp -r $fic $projectName
+    (($?)) && {
+        print -- "something went wrong (tried to copy $fic)"
+    }>&2
+done
+mkdir $projectName/{tmp,site,content}
+(($?)) && {
+    print -- "something went wrong creation of 'tmp,site,content' dir"
+}>&2
+cp $krambookDir/content/00_Macros.md $projectName/content/
+
+>$projectName/content/10_Introduction.md <<END
+# Congratulation
+
+You've configured correctly krambook. You can find informations on
+[krambook.espozito.com](krambook.espozito.com).
+
+You can use macro writing \%latex which will render as %latex.
+
+- To compile your book to PDF just run \`rake\`
+- To compile html website just run \`rake html\`
+- To compile svg website from the generated pdf just run \`rake svg\`
+END
+
+>$projectName/config.rb <<END
+# Use this file to configure some general variables
+
+@title="$projectName"
+@author="$USER"
+# file name
+@pdfname="$projectName"
+
+# Remember not to remove lines begining by %%#
+# look at include/template.tex for example
+@template_file="include/template.tex"
+END
+
+>$projectName/config_html.rb <<END
+@title=%{$projectName}
+@subtitle=%{Subtitle in config_html.rb}
+@author="$USER"
+# file name
+@pdfname="$projectName"
+
+# Remember to not remove lines begining by %%#
+# look at include/template.html for example
+@template_file="include/toc_template.html"
+@general_template="include/template.html"
+END
+
+print -- 'Congratulation, now your next step should be:'
+print -- "cd $projectName"
+print -- "rake"
