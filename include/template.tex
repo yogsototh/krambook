@@ -1,7 +1,18 @@
 \include{include/main}
 
 % -- Personal style --
-%%# LATEX HEADER FROM config.rb #%%
+% -- Comment the following line if you haven't 
+% -- Hoefler Text font installed on your system
+\setmainfont{Hoefler Text}
+
+% colors
+\usepackage{color}
+\definecolor{italiccolor}{rgb}{0.4,0.4,0.4}
+\definecolor{boxcolor}{rgb}{0.96,0.96,0.96}
+
+% Make italic and emphasis text gray
+\renewcommand{\textit}[1]{\textcolor{italiccolor}{\it #1}}
+\renewcommand{\emph}[1]{\textcolor{italiccolor}{\em #1}}
 
 % -- Redefinition of memoir chapters --
 %

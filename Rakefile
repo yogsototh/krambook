@@ -94,7 +94,6 @@ task :html do
             html_template.title=@title
             html_template.subtitle=@subtitle
             html_template.author=@author
-            html_template.html_headers=@html_headers
             html_template.homeURL="index.html"
             @postfilters<<=Links.new
             @postfilters<<=html_template
@@ -148,8 +147,6 @@ task :html do
             txt.gsub!(%r{<!-- Title -->},@title)
             txt.gsub!(%r{<!-- Subtitle -->},@subtitle)
             # puts "AFTER TITLE: " + txt
-            txt.sub!( %r{<!-- HTML HEADER -->},@html_headers) 
-            # puts "AFTER HTML HEADER: " + txt
             fic=File.new("site/index.html","w")
             fic.write(txt)
             fic.close
@@ -236,8 +233,7 @@ task :compile do
                     end.join("\n")
                 end.
                 sub!(%{\\author\{\}},'\author{'+@author+'}').
-                sub!(%{\\title\{\}},'\title{'+@title+'}').
-                sub!( /%%# LATEX HEADER FROM config\.rb #%%/,@latex_headers) 
+                sub!(%{\\title\{\}},'\title{'+@title+'}')
             fic=File.new("tmp/#{@pdfname}.tex","w")
             fic.write(txt)
             fic.close
