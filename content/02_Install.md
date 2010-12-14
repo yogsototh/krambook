@@ -13,7 +13,7 @@ But here are the dependencies:
 Optionally you'll need:
 
 - %latex (more precisely %xelatex) to generate PDF output, 
-- MathJax to draw correctly math formulae inside HTML website,
+- MathJax to draw correctly math formulæ inside HTML website,
 - `pdf2svg` to generate the SVG oriented website.
 
 [^1]: %kramdown is an amelioration of the original markdown format.
@@ -29,7 +29,7 @@ But if you are using Ubuntu the following command line should be enough:
    <pre>> gem install kramdown</pre>
 
 3. To install %xelatex, I suggest you to use [TexLive](http://www.tug.org/texlive/) full install to be certain not lacking anything. 
-Of course you are free to use any other distribution that suit you better.
+Of course you are free to use the install you prefer.
 
 4. Download [MathJax](http://www.mathjax.org)
 
