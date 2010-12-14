@@ -128,6 +128,8 @@ task :html do
                     @filelist.map do |source,dest| 
                         if File::basename(source) == '00_Macros.md'
                             ""
+                        elsif File::basename(source) =~ /\.hide\./
+                            ""
                         else
                             %{<div class="block">
                                 <h3>
