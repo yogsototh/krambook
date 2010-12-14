@@ -20,6 +20,9 @@ Now it is time to create your own book:
   Remark: 
   : by default file are sorted by name.  I suggest you to name your files and folder with number prefixes.  For example like `00_intro.md`, `01_section/01_subsection.md`, etc...  You can make a bit of `ruby` (search `@filelist` in the `Rakefile` file) to change this behaviour.
 
+  Remark (2):
+  : If a file contain `.hidden.` in his name it will not be displayed in the `HTML` ToC.
+
 - run `rake` (or `rake compile`) to create and show a `.pdf` file.
 - run `rake html` and launch `unicorn` (`gem install unicorn`) then look at the website at `http://localhost:8080/`,
 - run `rake clean` to remove temporary files,
