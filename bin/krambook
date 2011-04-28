@@ -38,7 +38,7 @@ cp $krambookDir/content/00_Macros.md $projectName/content/
 # Congratulation
 
 You've configured correctly krambook. You can find informations on
-[krambook.espozito.com](krambook.espozito.com).
+[krambook.espozito.com](http://krambook.espozito.com).
 
 You can use macro writing \%latex which will render as %latex.
 
