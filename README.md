@@ -13,7 +13,6 @@ You can see examples of standard end result here:
 
 # Why this project?
 
-
 ## Markdown is easier to read than LaTeX
 
 The best typesetting system I know is [LaTeX](http://latex-project.org).
@@ -62,22 +61,20 @@ The HTML end result using the markdown will be:
 > - the second point is LaTeX has _more_ \ than Markdown
 > - I believe you understood now
 
-Then I believe I don't have to convince more you that the markdown syntax is more natural than the LaTeX one.
+I believe I don't need more to convince you the markdown feel more natural than LaTeX.
 
 ## Markdown does not scale
 
 LaTeX has many incredible properties that makes it scalable even for very long document.
-On the other hand Markdown wasn't created for this purpose.
-Markdown was done to provide a standard syntax to transform some text file into HTML.
-Markdown lack many features that many other project have added to it.
-One of this project is [Kramdown]().
-There is many other project that expanded the abilities of Markdown.
+Markdown wasn't created for this purpose and so lack many features.
+Many language tried to extend Markdown (for example [Kramdown]()).
 
-But I believe not any of these project is scalable because the power of these language is _stricly_ inferior to the power of the TeX language.
-In fact TeX is Turing complete -- considering we have the ability to make many compilations until reaching a fixed point.
+None of these extension made the new language scalable enough.
+These new languages are _stricly_ inferior to the power of the TeX language.
+In fact TeX is Turing complete
+-- considering we have the ability to make many compilations until reaching a fixed point.
 
-How can LaTeX be Turing complete?
-Simply with the power of provided by _macros_. 
+An essential feature are _macros_.
 In LaTeX you can declare macros like this:
 
     \newcommand{\un}{\sum_{n=0}^\infty u_n}
@@ -90,25 +87,29 @@ It will be equivalent to:
 
     Here is a formula $\sum_{n=0}^\infty u_n = \pi$
 
-Imagine a thesis where this formula is present a hundred times and you begin to understand why macros are a necessity for long documents.
+Imagine a thesis where this formula is present a hundred times
+and you begin to understand why macros are a necessity for long documents.
 But in LaTeX you could also declare macros with parameters and that use other declared macros:
 
     \newcommand{\ratlang}[2]{\mathcal{S}_{#1}^{\mathrm{rat}}(#2)}
     \newcommand{\sr}[2]{\ratlang{\mathbb{R}}(\Sigma)}
     ...
-    Let us denote $\sr$ the class of rationnal stochastic language over $\mathbb{R}$ with alphabet $\Sigma$. 
+    Let us denote $\sr$ the class of rationnal stochastic language over $\mathbb{R}$ with alphabet $\Sigma$.
 
 Now you see the power of LaTeX.
 
-There is also another thing that make LaTeX scalable. You can include other source files. This make it easy to separate work and also to work with many other people.
+There is also another thing that make LaTeX scalable.
+You can include other source files.
+This make it easy to separate work and also to work with many other people.
 
-Another good point with LaTeX and markdown is that you write only in text file and you can then version these file using `git` for example.
+Another good point with LaTeX and markdown is that you write only in text file
+and you can then version these file using `git` for example.
 
-The purposes of this project are 
+The purposes of this project are:
 
 - Handle long documents by:
   - adding macros to kramdown
-  - working with many small and versionnable text files
+  - working with many small and versionable text files
 - generate high-quality PDF _and_ HTML documents.
 
 For now, the power of this superset of kramdown syntax is _not_ Turing complete.
@@ -119,7 +120,7 @@ But this simple addition to markdown is already powerful enough for most of usag
 
 ### What is the idea of the project?
 
-provide macros for Markdown then transform the text in Latex and generate a `pdf` file.
+Provide macros for Markdown then transform the text in Latex and generate a `pdf` file.
 
 ### Why not using LaTeX directly?
 
